@@ -23,6 +23,7 @@ import DashboardDigitalCurrency from "./pages/Dashboard/dashboardDigitalCurrency
 import DashboardFiatCurrency from "./pages/Dashboard/dashboardFiatCurrency";
 import DashboardCryptoCurrency from "./pages/Dashboard/dashboardCryptoCurrency";
 import Deposite from "./pages/Deposite/deposite";
+import CryptoCurrencyTransfer from "./pages/Crypto-Currency-Transfer/cryptoCurrencyTransfer";
 
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
@@ -37,6 +38,7 @@ function App() {
            
        
           <Route path="btc-transfer" element={<BtcTransfer />} />
+          <Route path="crypto-currency-transfer" element={<CryptoCurrencyTransfer  />} />
           <Route path="deposite" element={<Deposite />} />
           <Route path="notifications" element={<Notification />} />
           <Route path="profile" element={<Profile />} />

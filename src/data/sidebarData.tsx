@@ -54,8 +54,8 @@ export const links = [
     icon: <BiUserCircle />,
   },
   {
-    title: "BTC Transfer",
-    link: "btc-transfer",
+    title: "Crypto Currency Transfer",
+    link: "crypto-currency-transfer",
     icon: <BiUserCircle />,
   },
   {

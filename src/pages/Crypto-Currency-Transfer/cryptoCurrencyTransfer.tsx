@@ -5,7 +5,7 @@ import ThreeDots from '../../../src/assets/Icons/thress-dots.svg';
 import { useState } from "react";
 import ReactDOM from "react-dom";
 
-const Wallet = () => {
+const CryptoCurrencyTransfer = () => {
     const [currency, setCurrency] = useState(0);
 
     const data = [1, 2, 3, 4, 5];
@@ -13,12 +13,12 @@ const Wallet = () => {
         <>
             <div className="p-[66px]">
                 <div>
-                    <p className=" text-[white] pb-[78px] t-[24px]">Wallet</p>
+                    <p className=" text-[white] pb-[78px] t-[24px]"> Crypto Currency Transfer</p>
                 </div>
 
                 <div className="bg-[#0E0E0E]">
                     <div className="flex justify-between p-[35px]">
-                        <p className="text-[white]">Wallet</p>
+                        <p className="text-[white]">Crypto Currency Transfer</p>
                     </div>
 
                     <div className="flex justify-between p-[35px]  ">
@@ -64,11 +64,11 @@ const Wallet = () => {
                     <table className="table w-full pb-[60px]">
                         <thead className="text-white ">
                             <th>Sn</th>
-                            <th>Wallet</th>
-                            <th>No. of Deposits</th>
-                            <th>Balance</th>
-                            <th>View</th>
-                            <th>Transfer</th>
+                            <th>Sender</th>
+                            <th>Reciver</th>
+                            <th>Details </th>
+                            <th>Date</th>
+                            
                             
                         </thead>
                         <tbody className="bg-[#0E0E0E]  ">
@@ -97,27 +97,25 @@ const Wallet = () => {
                                         style={{ border: "none" }}
                                         className="p-[1rem]  text-[#787878]"
                                     >
-                                        0
+                                        15TncP7Ru6drhLqdcQXHY72HFPwk43WGrt
+                                    </td>
+                                    <td
+                                        style={{ border: "none" }}
+                                        className="p-[1rem]  text-[red]"
+                                    >
+                                      Failed
                                     </td>
                                     <td
                                         style={{ border: "none" }}
                                         className="p-[1rem]  text-[#787878]"
                                     >
-                                      0
-                                    </td>
-                                    <td
-                                        style={{ border: "none" }}
-                                        className="p-[1rem]  text-[#787878]"
-                                    >
-                                        <button className="btn bg-[#9CFA4A2B] text-[#9CFA4A]">
-                                            View
-                                        </button>
+                                       01/01/2023
                                     </td>
                                     <td
                                         style={{ border: "none" }}
                                         className="p-[1rem]  text-[#9CFA4A]"
                                     >
-                                      Coin Transfer
+                                     VIEW MORE
                                     </td>
                                     
                                 </tr>
@@ -130,4 +128,4 @@ const Wallet = () => {
     );
 };
 
-export default Wallet;
+export default CryptoCurrencyTransfer;
