@@ -25,9 +25,12 @@ import DashboardCryptoCurrency from "./pages/Dashboard/dashboardCryptoCurrency";
 import Deposite from "./pages/Deposite/deposite";
 import CryptoCurrencyTransfer from "./pages/Crypto-Currency-Transfer/cryptoCurrencyTransfer";
 
+
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const handleSidebar = () => setSideBarOpen(!sideBarOpen);
+
+
 
   const router = createBrowserRouter(
     createRoutesFromElements(

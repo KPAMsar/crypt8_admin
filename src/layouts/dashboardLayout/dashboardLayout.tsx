@@ -3,9 +3,12 @@ import SideBar from "./../../components/Sidebar";
 import { Outlet } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
+
 const DashboardLayout = ({ sideBarOpen }: { sideBarOpen: boolean }) => {
 
-  console.log(sideBarOpen)
+
+
+  // console.log(sideBarOpen)
   return (
     <>
       <div className="flex relative bg-[#0E0E0E] h-[100dvh] overflow-y-hidden">
@@ -18,7 +21,7 @@ const DashboardLayout = ({ sideBarOpen }: { sideBarOpen: boolean }) => {
 
 
         >
-          <SideBar />
+          <SideBar  />
         </div>
 
         <div className="bg-[#010101] lg:w-[calc(100dvw-276px)] overflow-x-auto">

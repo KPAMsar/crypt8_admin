@@ -53,8 +53,9 @@ const SubAdmin = () => {
                               <th></th>
                           </thead>
                           <tbody className="bg-[#0E0E0E]  ">
-                              {data.map((items, index) => (
+                              {data.map((item, index) => (
                                   <tr
+                                  key={index}
                                       style={{
                                           border: "none",
                                           justifyItems: " center",

@@ -1,9 +1,25 @@
 import { NavLink } from "react-router-dom";
 import { links } from "../data/sidebarData";
 import LogoImg from '../../src/assets/Icons/logo.svg';
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 
 const SideBar = () => {
+  const [active, setActive] = useState('');
+
+
+  
+  const location = useLocation();
+  
+  console.log('the active tab is ', active)
+  console.log('the act ', location.pathname)
+  if(active === location.pathname ){
+    console.log('the active tab is ', active)
+  }
+ 
+
+
   const url = window.location.href;
   const splittedUrl = url.split('/');
   // console.log(splittedUrl);
@@ -16,7 +32,7 @@ const SideBar = () => {
         {links.map((item) => {
 
           function isActive(path: string) {
-            console.log('path name us ',window.location.pathname)
+            // console.log('path name us ',window.location.pathname)
             return window.location.pathname === path;
           }
 
@@ -25,7 +41,7 @@ const SideBar = () => {
             <>
               <div>
                 <div className="flex h-[100%] my-[22px] pl-[40px]  gap-4">
-                  <NavLink className={`text-white flex gap-3 w-[178px] ${isActive(item.link) ? 'bg-red-500' : ''}`} to={item.link} >
+                  <NavLink className={`text-white flex gap-3 w-[178px]  ${active === item.link ? 'bg-[#9CFA4A]':' '} h-[40px] items-center rounded-sm px-[10px]  py-[12px]`} to={item.link}  onClick={()=>setActive(item.link)}>
                     {item.icon} <span>{item.title}</span>
                   </NavLink>
                   {/* <p className="text-white text-[16px] w-[168px]"></p> */}

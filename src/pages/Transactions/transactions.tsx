@@ -49,8 +49,9 @@ const Transactions = () => {
                             <th>Status</th>
                         </thead>
                         <tbody className="bg-[#0E0E0E]  ">
-                            {data.map((items) => (
+                            {data.map((item) => (
                                 <tr
+                                     key={item}
                                     style={{
                                         border: "none",
                                         justifyItems: " center",

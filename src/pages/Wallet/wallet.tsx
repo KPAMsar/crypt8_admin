@@ -72,8 +72,9 @@ const Wallet = () => {
                             
                         </thead>
                         <tbody className="bg-[#0E0E0E]  ">
-                            {data.map((items, index) => (
+                            {data.map((item, index) => (
                                 <tr
+                                key={item}
                                     style={{
                                         border: "none",
                                         justifyItems: " center",

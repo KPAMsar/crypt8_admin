@@ -55,6 +55,7 @@ const RateClasses = () => {
                           <tbody className="bg-[#0E0E0E]  ">
                               {data.map((items, index) => (
                                   <tr
+                                  key={index}
                                       style={{
                                           border: "none",
                                           justifyItems: " center",

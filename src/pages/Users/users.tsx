@@ -1,8 +1,5 @@
 import SearchIcon from "../../../src/assets/Icons/searchIcon.svg";
 import UpDownIcon from "../../assets/Icons/searchUpandDownArrow.svg";
-import { Modal, Form } from "react-bootstrap";
-
-import ReactDOM from "react-dom";
 
 const Users = () => {
    
@@ -50,8 +47,9 @@ const Users = () => {
                             <th>Status</th>
                         </thead>
                         <tbody className="bg-[#0E0E0E]  ">
-                            {data.map((items) => (
+                            {data.map((item) => (
                                 <tr
+                                key={item}
                                     style={{
                                         border: "none",
                                         justifyItems: " center",
