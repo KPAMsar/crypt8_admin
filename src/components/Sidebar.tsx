@@ -31,17 +31,13 @@ const SideBar = () => {
         </div>
         {links.map((item) => {
 
-          function isActive(path: string) {
-            // console.log('path name us ',window.location.pathname)
-            return window.location.pathname === path;
-          }
-
+    
           return (
 
             <>
               <div>
                 <div className="flex h-[100%] my-[22px] pl-[40px]  gap-4">
-                  <NavLink className={`text-white flex gap-3 w-[178px]  ${active === item.link ? 'bg-[#9CFA4A]':' '} h-[40px] items-center rounded-sm px-[10px]  py-[12px]`} to={item.link}  onClick={()=>setActive(item.link)}>
+                  <NavLink className={`text-white flex gap-3 w-[178px]  ${active === item.link ? 'bg-[#9CFA4A]  text-green':' '} h-[40px] items-center rounded-sm px-[10px]  py-[12px]`} to={item.link}  onClick={()=>setActive(item.link)}>
                     {item.icon} <span>{item.title}</span>
                   </NavLink>
                   {/* <p className="text-white text-[16px] w-[168px]"></p> */}

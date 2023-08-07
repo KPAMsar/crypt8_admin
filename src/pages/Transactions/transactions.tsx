@@ -13,7 +13,7 @@ const Transactions = () => {
         <>
             <div className="p-[66px]">
                 <div>
-                    <p className=" text-[white] pb-[78px] t-[24px]">Transactions</p>
+                    <p className=" text-[white] pb-[78px] text-[24px]">Transactions</p>
                 </div>
 
                 <div className="bg-[#0E0E0E]">

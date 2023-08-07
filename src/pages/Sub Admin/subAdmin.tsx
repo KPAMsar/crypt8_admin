@@ -11,7 +11,7 @@ const SubAdmin = () => {
         <>
             <div className="p-[66px]">
                 <div>
-                    <p className=" text-[white] pb-[78px] t-[24px]">Sub Admin</p>
+                    <p className=" text-[white] pb-[78px] text-[24px]">Sub Admin</p>
                 </div>
 
 

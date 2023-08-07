@@ -9,7 +9,7 @@ const Users = () => {
         <>
             <div className="p-[66px]">
                 <div>
-                    <p className=" text-[white] pb-[78px] t-[24px]">Users</p>
+                    <p className=" text-[white] pb-[78px] text-[24px]">Users</p>
                 </div>
 
                 <div className="bg-[#0E0E0E]">

@@ -11,7 +11,7 @@ const RateClasses = () => {
         <>
             <div className="p-[66px]">
                 <div>
-                    <p className=" text-[white] pb-[78px] t-[24px]">Rate Classes</p>
+                    <p className=" text-[white] pb-[78px] text-[24px]">Rate Classes</p>
                 </div>
 
 

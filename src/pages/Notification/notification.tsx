@@ -17,7 +17,7 @@ const Notification = () => {
 
                 <div className="bg-[#0E0E0E] ">
                     <div className="flex justify-between p-[35px]">
-                        <p className="text-[white]">Notification</p>
+                        <p className="text-[white] text-[24px]">Notification</p>
                         <p style={{
                             background:
                                 "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",

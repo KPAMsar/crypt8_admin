@@ -13,7 +13,7 @@ const CryptoCurrencyTransfer = () => {
         <>
             <div className="p-[66px]">
                 <div>
-                    <p className=" text-[white] pb-[78px] t-[24px]"> Crypto Currency Transfer</p>
+                    <p className=" text-[white] pb-[78px] text-[24px]"> Crypto Currency Transfer</p>
                 </div>
 
                 <div className="bg-[#0E0E0E]">

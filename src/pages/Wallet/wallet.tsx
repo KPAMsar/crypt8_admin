@@ -13,7 +13,7 @@ const Wallet = () => {
         <>
             <div className="p-[66px]">
                 <div>
-                    <p className=" text-[white] pb-[78px] t-[24px]">Wallet</p>
+                    <p className=" text-[white] pb-[78px] text-[24px]">Wallet</p>
                 </div>
 
                 <div className="bg-[#0E0E0E]">
