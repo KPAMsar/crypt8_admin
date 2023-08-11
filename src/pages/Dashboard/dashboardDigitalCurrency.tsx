@@ -1,7 +1,7 @@
 import RoundPhotoIcon from "../../assets/Icons/roundPhotoIcon.png";
 import SearchIcon from "../../../src/assets/Icons/searchIcon.svg";
 import UpDownIcon from "../../assets/Icons/searchUpandDownArrow.svg";
-import ModalCloseIcon from '../../../src/assets/Icons/ModalCloseIcon.svg';
+import ModalCloseIcon from "../../../src/assets/Icons/ModalCloseIcon.svg";
 import { useState } from "react";
 import React from "react";
 import DashboardCryptoCurrency from "./dashboardCryptoCurrency";
@@ -114,7 +114,15 @@ const DashboardDigitalCurrency = () => {
           </table>
         </div>
       </div>
-      
+
+      <div
+        className={` ${
+          isModalOpen
+            ? "fixed top-0 right-0 z-20 h-[100dvh] w-[100dvw] bg-[rgba(210,210,210,0.5)]"
+            : " "
+        } `}
+      ></div>
+
       {/* MODAL */}
       <div
         className={`h-[854px] w-[749px] flex justify-items-end bg-[#010101] shadow-lg z-30 backdrop-blur-md fixed top-2 right-7 transform ${
@@ -123,36 +131,43 @@ const DashboardDigitalCurrency = () => {
       >
         {/* modal content goes here */}
         <div className="p-8">
-
-            <div className="flex  justify-between pl-[32rem]" onClick={closeModal}>
-                <img src={ModalCloseIcon} alt="" />
-            </div>
-            <div>
-                <h2 className=" text-[#FFFFFF]  text-[24px] text-center pt-[40px] pb-[50px]">Add Gift Card</h2>
-              <div className="flex  flex-col gap-11 ">
+          <div
+            className="flex  justify-between pl-[32rem]"
+            onClick={closeModal}
+          >
+            <img src={ModalCloseIcon} alt="" />
+          </div>
+          <div>
+            <h2 className=" text-[#FFFFFF]  text-[24px] text-center pt-[40px] pb-[50px]">
+              Add Gift Card
+            </h2>
+            <div className="flex  flex-col gap-11 ">
               <div className=" bg-[#0E0E0E] h-[90px] flex flex-col justify-item p-4 gap-3">
-                    <small className=" text-[#666666]  text-[12px]"> Card Name</small>
-                    <p className="text-white text-[16px]">Gift Card</p>
-                </div>
-                <div className=" bg-[#0E0E0E] h-[90px] flex flex-col justify-item p-4 gap-3">
-                    <small className=" text-[#666666]  text-[12px]"> Choose Logo</small>
-                    <p className="text-white text-[16px]">Gift Card</p>
-                </div>
-                <p
-              style={{
-                background:
-                  "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
-              }}
-              className="text-[#9CFA4A]  p-2 px-[150px] py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  text-center "
-              onClick={initModal}
-            >
-              Save
-            </p>
+                <small className=" text-[#666666]  text-[12px]">
+                  {" "}
+                  Card Name
+                </small>
+                <p className="text-white text-[16px]">Gift Card</p>
               </div>
+              <div className=" bg-[#0E0E0E] h-[90px] flex flex-col justify-item p-4 gap-3">
+                <small className=" text-[#666666]  text-[12px]">
+                  {" "}
+                  Choose Logo
+                </small>
+                <p className="text-white text-[16px]">Gift Card</p>
+              </div>
+              <p
+                style={{
+                  background:
+                    "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
+                }}
+                className="text-[#9CFA4A]  p-2 px-[150px] py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  text-center "
+                onClick={initModal}
+              >
+                Save
+              </p>
             </div>
-
-
-        
+          </div>
         </div>
       </div>
     </>

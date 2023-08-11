@@ -1,10 +1,8 @@
 import RoundPhotoIcon from '../../assets/Icons/roundPhotoIcon.png';
 import SearchIcon from '../../../src/assets/Icons/searchIcon.svg';
 import UpDownIcon from '../../assets/Icons/searchUpandDownArrow.svg';
-import { Modal, Form } from 'react-bootstrap';
 
 import { useState } from 'react';
-import ReactDOM from 'react-dom';
 
 
 const DashboardFiatCurrency = () => {
@@ -14,9 +12,7 @@ const DashboardFiatCurrency = () => {
         //   [hide,setHide] = useState(false);
         console.log(show)
 
-    const handleClose = () =>{
-        setShow(false);
-    }
+ 
     
    
 
@@ -90,43 +86,7 @@ const DashboardFiatCurrency = () => {
 
 
 
-    
-      {ReactDOM.createPortal(
-        <>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton style={{ background:'white'}}>
-              <Modal.Title>Add Featured Product</Modal.Title>
-            </Modal.Header>
-            <Form.Group>
-              <div style={{ padding: "12px" }}>
-          <p className='text-white'>hdhdhdhd</p>
-              </div>
-            </Form.Group>
-            <Modal.Footer>
-              {/* {!showSpinner && (
-                <Button
-                  type="submit"
-                  id="add_product"
-                  className="btn btn-primary"
-                  onClick={handleFormSubmit}
-                >
-                  Add Product
-                </Button>
-              )}
-              {showSpinner && (
-                <center>
-                  <RotatingLines
-                    width="30"
-                    strokeColor={PRIMARY_COLOR}
-                    strokeWidth="3"
-                  />
-                </center>
-              )} */}
-            </Modal.Footer>
-          </Modal>
-        </>,
-        document.body
-      )}
+ 
         </>
     );
 }

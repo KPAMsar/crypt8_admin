@@ -91,18 +91,19 @@ const DashboardBarChart = ()=>{
           data={data}
           margin={{
             top: 5,
-            right: 30,
-            left: 20,
+            right: 10,
+            left: 10,
             bottom: 5,
           }}
+          barSize={9}
         >
           <CartesianGrid strokeDasharray="1 1" />
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#DDF5C9" background={{ fill: '#eee' }} />
-          <Bar dataKey="uv" fill="#9CFA4A" />
+          <Bar dataKey="pv" fill="#DDF5C9" background={{ fill: '#eee' }} radius={[5, 5, 0, 0]} />
+          <Bar dataKey="uv" fill="#9CFA4A" radius={[5, 5, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
 </>

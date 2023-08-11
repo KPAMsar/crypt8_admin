@@ -2,34 +2,33 @@ import NavbarDots from '../../src/assets/Icons/navbarDots.svg';
 import NavbarNotification from '../../src/assets/Icons/navbarNotification.svg';
 import NavbarPhotoIcon from '../../src/assets/Icons/roundPhotoIcon.png';
 import HamburgerIcon from '../../src/assets/Icons/hamburger.svg';
-import { useState } from 'react';
+import Logo from '../../src/assets/Icons/logo.svg';
+// import { useState } from 'react';
 
 
-const Navbar = ({name})=>{
-  const [navOpen, setOpenNav] = useState(true);
+const Navbar = ({ handleSidebar }: { handleSidebar: () => void }) => {
+  console.log('this is handlesidebar',handleSidebar)
 
-  const handleBurgerClick = ()=>{
-    setOpenNav(!navOpen);
-    console.log(navOpen)
-
-  }
-  
-    return (
-      <>
-        <nav className="h-[10px] w-full  text-white  "> 
-          <div className="flex justify-between"> 
-              <p className="text-white p-[66px] text-[24px]">{name} </p>
-              <div className="flex gap-[20px] items-center pr-[66px]">
-                <img src={NavbarNotification} alt="" />
-                <img src={NavbarPhotoIcon} alt="" />
-                <p className=' hidden text-white  md:block'>CRYPT8</p>
-                <img src={NavbarDots} alt="" className="hidden md:hidden xl:block "/>
-                <img src={HamburgerIcon} alt=""  className="sm:block md:block xl:hidden"  onClick={handleBurgerClick} />
-              </div>
+  return (
+    <>
+    
+      <nav className="  w-[100vdw] lg:w-full bg-[#010101] z-50  text-white  sticky top-0 left-0  h-[10px] ">
+        <div className="flex justify-between">
+          <p className="text-white p-[66px] text-[24px]"></p>
+          <div className="flex gap-[20px] items-center pr-[66px]">
+         <div className='flex justify-between left-0 absolute'>
+         <img src={Logo} alt="" className="block md:hidden xl:hidden w-[130px]  h-[60px] right-0" onClick={handleSidebar} />
+         </div>
+            <img src={NavbarNotification} alt="" />
+            <img src={NavbarPhotoIcon} alt="" />
+            <p className=' hidden text-white  md:block'>CRYPT8</p>
+            <img src={NavbarDots} alt="" className="hidden md:hidden xl:block " />
+            <img src={HamburgerIcon} alt="" className="block md:hidden xl:hidden w-[100vdw] right-4  absolute" onClick={handleSidebar} />
           </div>
-        </nav>
-      </>
-    );
+        </div>
+      </nav>
+    </>
+  );
 }
 
 export default Navbar;

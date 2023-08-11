@@ -86,7 +86,7 @@ export const links = [
   },
   {
     title: "Logout",
-    link: "",
+    link: "logout",
     icon: <img src={LogoutIcon} alt="" />,
     style: { color: " #B71E41" },
   },

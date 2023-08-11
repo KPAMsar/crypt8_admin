@@ -4,7 +4,6 @@ import CryptoColordCard from "../../components/CryptoColoredCard";
 import CryptoCard from "../../components/CryptoCard";
 import DashboardBarChart from "../../components/BarChart";
 import RecentDepositeTable from "../../components/RecentDepositeTable";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 import { LineChart } from "recharts";
 import { useNavigate } from "react-router-dom";
@@ -38,39 +37,47 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
 
   return (
     <>
-      <div className=" mb-[6rem]">
-        <div className="pl-[48px] ">
+      <div className=" lg:mb-[6rem] w-[100dvw] overflow-hidden">
+        <div className="pl-[4px] lg:pl-[48px] ">
           <p
             onClick={handleSidebar}
-            className=" text-white text-[24px] space-[-0.12px] pl-[48px] mt-[61px]"
+            className=" text-white text-[20px] lg:text-[24px] space-[-0.12px] pl-[30px]  lg:pl-[48px] mt-[100px] lg:mt-[61px] "
           >
             Welcome Crypt8
           </p>
-          <GiHamburgerMenu />
-          <div className="flex mt-8 gap-[47px] ">
+          <div className="flex">
+              <div className=" lg:block ">
+                <p className="text-[white] ">Overview</p>
+
+              </div>
+            </div>
+         
+          <div className="flex mt-8 gap-[47px]   ">
+           
             <div className="flex flex-col gap-[55px]">
               {/* FIRST BOX */}
-              <div className="flex  rounded-[5px] bg-[#0E0E0E]  h-[168px] w-[867px] p-[30px] justify-between">
-                <div className="flex-col p-[29px 14px 29px 40px]  ">
-                  <small className="text-[16px] text-[#666]">Total Users</small>
-                  <p className="text-[#9CFA4A] text-[35px] font-[600]">329</p>
+              <div className="flex rounded-[5px] bg-[#0E0E0E] 
+              h-[178px] w-screen lg:h-[168px] lg:w-[867px]   p-[30px]  justify-between  overflow-x-auto" >
+                <div className=" lg:flex-col  lg:items-center lg:justify-center lg:p-[29px 14px 29px 40px]  ">
+                  <small className="lg:text-[16px] lg:text-[#666]">Total Users</small>
+                  <p className="lg:text-[#9CFA4A] lg:text-[35px] lg:font-[600]">329</p>
                 </div>
                 <div className="w-[2px] border-l-2 bg-green"></div>
-                <div className="flex-col p-[29px 14px 29px 40px]  ">
+                <div className="flex-col   p-[29px 14px 29px 40px]  ">
                   <small className="text-[16px] text-[#666]">
                     Total Crypto Deposite
                   </small>
                   <p className="text-[#9CFA4A] text-[35px] font-[600]">329</p>
                 </div>
                 <div className="w-[2px] border-l-2 bg-slate-500"></div>
-                <div className="flex-col p-[29px 14px 29px 40px] ">
+                <div className="flex-col  p-[29px 14px 29px 40px] ">
                   <small className="text-[16px] text-[#666]">
                     Total Transactions
                   </small>
                   <p className="text-[#9CFA4A] text-[35px] font-[600]">329</p>
                 </div>
                 <div className="w-[2px] border-l-2 bg-slate-500"></div>
-                <div className="flex-col p-[29px 14px 29px 40px] ">
+                <div className="flex-col  lg:p-[29px 14px 29px 40px] ">
                   <small className="text-[16px] text-[#666]">
                     Total Rate Class
                   </small>
@@ -106,7 +113,7 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
 
               </div>
             </div>
-            <div className="flex space-y-[19px] flex-col">
+            <div className="md:flex md:space-y-[19px] md:flex-col  flex">
               <BtcRateBox />
               <CryptoColordCard
                 currency="Digital Currency"

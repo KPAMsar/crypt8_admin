@@ -36,7 +36,7 @@ function App() {
     createRoutesFromElements(
       <Route>
         
-        <Route path="/" element={<DashboardLayout sideBarOpen={sideBarOpen} />}>
+        <Route path="/" element={<DashboardLayout sideBarOpen={sideBarOpen} handleSidebar={handleSidebar} />}>
           <Route path="/" element={ <Dashboard handleSidebar={handleSidebar} />} />
            
        
