@@ -12,6 +12,7 @@ export default {
       'lg': '1440px',
       // => @media (min-width: 1440px) { ... }
     },
+
     extend: {
       fontFamily: {
         chakra: ["Chakra Petch", "sans-serif"],

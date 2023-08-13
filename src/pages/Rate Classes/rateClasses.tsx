@@ -9,7 +9,7 @@ const RateClasses = () => {
     const data = [1, 2, 3, 4, 5];
     return (
         <>
-            <div className="p-[66px]">
+            <div className="lg:mb-[6rem] w-[100dvw] overflow-hidden lg:pl-[48px]">
                 <div>
                     <p className=" text-[white] pb-[78px] text-[24px]">Rate Classes</p>
                 </div>
