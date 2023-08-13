@@ -5,7 +5,8 @@ const RecentDepositeTable = () => {
   const data =[1,2,3,4,5]
   return (
     <>
-      <div className="flex w-full overflow-x-auto mt-[3rem] mb-[3rem]">
+      <div className="flex lg:w-full overflow-x-auto lg:mt-[3rem] lg:mb-[3rem] pl-[16px] mb-[60px] ">
+       
         <table className="table w-full pb-[60px]"  >
           <thead className="text-white">
             <tr>
@@ -16,8 +17,8 @@ const RecentDepositeTable = () => {
             </tr>
           </thead>
           <tbody className='bg-[#0E0E0E] '>
-            {data.map((items) =>(
-              <tr  style={{border:'none'}}>
+            {data.map((item) =>(
+              <tr  key={item} style={{border:'none'}}>
               <th style={{border:'none'}} className='p-[1rem]'><img src={RoundPhotoIcon}  alt="" /></th>
               <td style={{border:'none'}} className='p-[1rem] text-[#787878]'>Kpamsar Shija</td>
               <td style={{border:'none'}}  className='p-[1rem]  text-[#787878]'>Deposited $4230 </td>

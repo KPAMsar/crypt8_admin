@@ -12,9 +12,9 @@ const Navbar = ({ handleSidebar }: { handleSidebar: () => void }) => {
   return (
     <>
     
-      <nav className="  w-[100vdw] lg:w-full bg-[#010101] z-50  text-white  sticky top-0 left-0  h-[10px] ">
-        <div className="flex justify-between">
-          <p className="text-white p-[66px] text-[24px]"></p>
+      <nav className="  w-[100vdw] lg:w-full md:full bg-[#010101] z-10  text-white  sticky top-0 left-0  h-[10px] ">
+        <div className="flex justify-between bg-[#010101] h-[80px]">
+          <p className="text-white p-[66px]  text-[24px]"></p>
           <div className="flex gap-[20px] items-center pr-[66px]">
          <div className='flex justify-between left-0 absolute'>
          <img src={Logo} alt="" className="block md:hidden xl:hidden w-[130px]  h-[60px] right-0" onClick={handleSidebar} />

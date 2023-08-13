@@ -17,7 +17,7 @@ const DashboadGiftCard = () => {
     const data = [1, 2, 3, 4, 5]
     return (
         <>
-            <div className="p-[66px]">
+            <div className="pl-[] lg:p-[66px]">
                 <div>
                     <p className=" text-[white] pb-[78px]">Gift Card List</p>
                 </div>
@@ -29,7 +29,7 @@ const DashboadGiftCard = () => {
                         <p style={{
                             background:
                                 "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
-                        }} className='text-[#9CFA4A]  p-2 px-[150px] py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  ' onClick={toggleModal} >Add Gift Card</p>
+                        }} className='text-[#9CFA4A]  lg:p-2 lg:px-[150px] lg:py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B] p-2 px-[100px] py-2 ' onClick={toggleModal} >Add Gift Card</p>
                           {/* <label className="btn btn-primary" htmlFor="modal-1">Open Modal</label> */}
                     </div>
 

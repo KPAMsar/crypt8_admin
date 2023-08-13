@@ -15,7 +15,7 @@ const CryptoCard = ({currency, click, borderColor}: CryptoCardProps) => {
     <>
       <div
       
-        className={`w-[320px] h-[124px] flex items-center justify-between  bg-[#0E0E0E] 
+        className={`w-[370px] lg:w-[320px] h-[100px] lg:h-[124px] flex items-center justify-between  bg-[#0E0E0E] 
         opacity-90 border border-[${borderColor}] border-none rounded-sm gap-3 pl-[20px] pr-[20px]` } 
         onClick={click}
       >

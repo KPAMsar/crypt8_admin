@@ -24,20 +24,21 @@ const DashboardDigitalCurrency = () => {
   const data = [1, 2, 3, 4, 5];
   return (
     <>
-      <div className="p-[66px]">
+      <div className="lg:p-[66px]">
         <div>
           <p className=" text-[white] pb-[78px]">All Digital Currency</p>
         </div>
 
-        <div className="bg-[#0E0E0E]">
-          <div className="flex justify-between p-[35px]">
-            <p className="text-[white]">All Digital Currency</p>
+        <div className="lg:bg-[#0E0E0E] bg-[]">
+          <div className="lg:flex  flex justify-between lg:p-[35px]">
+            <p className="text-[white]   hidden lg:block">All Digital Currency</p>
+            <p className="block lg:hidden text-white">Gift Card </p>
             <p
               style={{
                 background:
                   "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
               }}
-              className="text-[#9CFA4A]  p-2 px-[150px] py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  "
+              className="text-[rgb(156,250,74)]  lg:p-2 lg:px-[150px] lg:py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B] px-[20px] py-[10px] "
               onClick={initModal}
             >
               Add Gift Card
