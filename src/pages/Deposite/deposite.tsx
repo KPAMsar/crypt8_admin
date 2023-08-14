@@ -3,7 +3,7 @@ import UpDownIcon from "../../assets/Icons/searchUpandDownArrow.svg";
 import { Modal, Form } from "react-bootstrap";
 import ThreeDots from '../../../src/assets/Icons/thress-dots.svg';
 import { useState } from "react";
-import ReactDOM from "react-dom";
+
 
 const Deposite = () => {
     const [currency, setCurrency] = useState(0);
@@ -11,7 +11,7 @@ const Deposite = () => {
     const data = [1, 2, 3, 4, 5];
     return (
         <>
-            <div className="p-[66px]">
+            <div className="lg:mb-[6rem] w-[100dvw] lg:w-[100%] overflow-hidden md:pl-[30px] pr-[30px] pl-[20px] md:pr-[30px] lg:pl-[48px] mt-[100px] lg:mt-[100px] lg:pr-[40px]" >
                 <div>
                     <p className=" text-[white] pb-[78px] text-[24px]">Deposite</p>
                 </div>
@@ -19,10 +19,14 @@ const Deposite = () => {
                 <div className="bg-[#0E0E0E]">
                     <div className="flex justify-between p-[35px]">
                         <p className="text-[white]">All Deposite</p>
+                        <div className=" lg:hidden flex justify-between gap-[24px]">
+                            <img src={SearchIcon} alt="" />
+                            <img src={ThreeDots} alt="" />
+                        </div>
                     </div>
 
                     <div className="flex justify-between p-[35px]  ">
-                        <div className="flex text-[#9CFA4A]  gap-4  items-center ">
+                        <div className="lg:flex hidden text-[#9CFA4A]  gap-4  items-center ">
                             <p>Show</p>
                             <div className="border border-2 border-[#9CFA4A2B] w-[176px] rounded-lg  h-[40px]">
                                 <img src={UpDownIcon} alt="" />
@@ -55,84 +59,85 @@ const Deposite = () => {
                             </p>
                         </div>
 
-                        <div className="flex  justify-start flex-start rounded-lg gap-2 text-[#9CFA4A]  p-2 px-[100px] border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  ">
+                        <div className="lg:flex hidden lg:justify-start lg:flex-start lg:rounded-lg lg:gap-2 text-[#9CFA4A]  lg:p-2 lg:px-[100px] lg:border border-1 lg:border-[#9CFA4A2B]   bg-[#9CFA4A2B]  ">
                             <img src={SearchIcon} alt="" />
                             Search
                         </div>
                     </div>
 
-                    <table className="table w-full pb-[60px]">
-                        <thead className="text-white ">
-                            <th>User</th>
-                            <th>Amount</th>
-                            <th>Rate</th>
-                            <th>Confirmation</th>
-                            <th>Dollar Value</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </thead>
-                        <tbody className="bg-[#0E0E0E]  ">
-                            {data.map((items) => (
-                                <tr
-                                    style={{
-                                        border: "none",
-                                        justifyItems: " center",
-                                    }}
-                                >
-                                  
-                                   
-                                    <td
-                                        style={{ border: "none" }}
-                                        className="p-[1rem] text-[#787878]"
+                    <div className="overflow-x-auto ">
+                        <table className="table w-[100dvw] overflow-hidden  lg:w-full    lg:pb-[60px]">
+                            <thead className="text-white  ">
+                                <th className="min-w-[120px]">User</th>
+                                <th className="min-w-[120px]">Amount</th>
+                                <th className="min-w-[120px]">Rate</th>
+                                <th className="min-w-[120px]">Confirmation</th>
+                                <th className="min-w-[120px]">Dollar Value</th>
+                                <th className="min-w-[120px]">Date</th>
+                                <th className="min-w-[120px]">Status</th>
+                            </thead>
+                            <tbody className="bg-[#0E0E0E]  ">
+                                {data.map((item) => (
+                                    <tr key={item}
+                                        style={{
+                                            border: "none",
+                                            justifyItems: " center",
+                                        }}
                                     >
-                                        Crypt 8
-                                    </td>
-                                    <td
-                                        style={{ border: "none" }}
-                                        className="p-[1rem] text-[#787878]"
-                                    >
-                                        0.00811351
-                                    </td>
-                                    <td
-                                        style={{ border: "none" }}
-                                        className="p-[1rem]  text-[#787878]"
-                                    >
-                                        570
-                                    </td>
-                                    <td
-                                        style={{ border: "none" }}
-                                        className="p-[1rem]  text-[#787878]"
-                                    >
-                                        <button className="btn bg-[#9CFA4A2B] text-[#9CFA4A]">
-                                            3
-                                        </button>
-                                    </td>
-                                    <td
-                                        style={{ border: "none" }}
-                                        className="p-[1rem]  text-[#787878]"
-                                    >
-                                       $299.02
-                                    </td>
-                                    <td
-                                        style={{ border: "none" }}
-                                        className="p-[1rem]  text-[#787878]"
-                                    >
-                                       01/01/2023
-                                    </td>
-                                    <td
-                                        style={{ border: "none" }}
-                                        className="p-[1rem]  text-[#787878] flex justify-between"
-                                    >
-                                        <button className="btn bg-[#9CFA4A2B] text-[#9CFA4A]">
-                                            Approved
-                                        </button>
-
-                                        
-                                    </td>
-                                </tr>
-                            ))}{" "}
-                        </tbody>
-                    </table>
+                        
+                        
+                                        <td
+                                            style={{ border: "none" }}
+                                            className="p-[1rem] text-[#787878]"
+                                        >
+                                            Crypt 8
+                                        </td>
+                                        <td
+                                            style={{ border: "none" }}
+                                            className="p-[1rem] text-[#787878]"
+                                        >
+                                            0.00811351
+                                        </td>
+                                        <td
+                                            style={{ border: "none" }}
+                                            className="p-[1rem]  text-[#787878]"
+                                        >
+                                            570
+                                        </td>
+                                        <td
+                                            style={{ border: "none" }}
+                                            className="p-[1rem]  text-[#787878]"
+                                        >
+                                            <button className="btn bg-[#9CFA4A2B] text-[#9CFA4A]">
+                                                3
+                                            </button>
+                                        </td>
+                                        <td
+                                            style={{ border: "none" }}
+                                            className="p-[1rem]  text-[#787878]"
+                                        >
+                                           $299.02
+                                        </td>
+                                        <td
+                                            style={{ border: "none" }}
+                                            className="p-[1rem]  text-[#787878]"
+                                        >
+                                           01/01/2023
+                                        </td>
+                                        <td
+                                            style={{ border: "none" }}
+                                            className="p-[1rem]  text-[#787878] flex justify-between"
+                                        >
+                                            <button className="btn bg-[#9CFA4A2B] text-[#9CFA4A]">
+                                                Approved
+                                            </button>
+                        
+                                        </td>
+                                    </tr>
+                                ))}{" "}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </>

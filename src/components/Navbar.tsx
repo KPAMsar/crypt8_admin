@@ -23,7 +23,7 @@ const Navbar = ({ handleSidebar }: { handleSidebar: () => void }) => {
             <img src={NavbarPhotoIcon} alt="" />
             <p className=' hidden text-white  md:block'>CRYPT8</p>
             <img src={NavbarDots} alt="" className="hidden md:hidden xl:block " />
-            <img src={HamburgerIcon} alt="" className="block md:block lg:hidden xl:hidden w-[100vdw] right-4  absolute" onClick={handleSidebar} />
+            <img src={HamburgerIcon} alt="" className="block md:block lg:hidden xl:hidden w-[100vdw] right-4  absolute " onClick={handleSidebar} />
           </div>
         </div>
       </nav>
