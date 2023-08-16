@@ -7,7 +7,7 @@ import Logo from '../../src/assets/Icons/logo.svg';
 
 
 const Navbar = ({ handleSidebar }: { handleSidebar: () => void }) => {
-  console.log('this is handlesidebar',handleSidebar)
+
 
   return (
     <>

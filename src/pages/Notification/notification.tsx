@@ -19,12 +19,12 @@ const Notification = () => {
                             <p style={{
                                 background:
                                     "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
-                            }} className='text-[#9CFA4A]  py-[15px] px-[40px] lg:p-2 lg:px-[150px] lg:py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  '  >Add Notification</p>
+                            }} className='text-[#9CFA4A]  py-[5px] px-[10px] lg:p-2 lg:px-[150px] lg:py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  '  >Add Notification</p>
                         </div>
 
                 <div className="bg-[#0E0E0E] ">
                     <div className="flex-col lg:flex justify-between  py-[30px] lg:p-[35px]">
-                        <p className="text-[white] text-[24px] pl-[10px]">Notification</p>
+                        <p className="text-[white] text-[18px] lg:text-[24px] pl-[10px]">Notification</p>
 
                         <div className="lg:flex hidden justify-between">
                             <p></p>
@@ -35,7 +35,7 @@ const Notification = () => {
                         </div>
                     </div>
 
-                    <div className="lg:flex justify-between p-[35px] hidden   ">
+                    <div className="lg:flex justify-between p-[35px] hidden">
                         <div className="flex text-[#9CFA4A]  gap-4  items-center ">
                             <p>Show</p>
                             <div className="border border-2 border-[#9CFA4A2B] w-[176px] rounded-lg  h-[40px]">

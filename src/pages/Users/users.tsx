@@ -9,7 +9,7 @@ const Users = () => {
     const data = [1, 2, 3, 4, 5];
     return (
         <>
-            <div className="lg:mb-[6rem] w-[100dvw] lg:w-[100%] overflow-hidden md:pl-[30px] pr-[20px] pl-[20px] md:pr-[30px] lg:pl-[48px] mt-[100px] lg:mt-[100px] lg:pr-[40px]">
+            <div className="lg:mb-[6rem] w-[100dvw] lg:w-[100%] overflow-hidden md:pl-[30px] pr-[10px] pl-[10px] md:pr-[30px] lg:pl-[48px] mt-[100px] lg:mt-[100px] lg:pr-[40px]">
                 <div>
                     <p className=" text-[white] pb-[78px] text-[24px]">Users</p>
                 </div>

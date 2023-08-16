@@ -1,10 +1,10 @@
-import { BiBarChartAlt2, BiUserCircle } from "react-icons/bi";
-import { HiOutlineLogout, HiOutlineUsers } from "react-icons/hi";
-import { TbReceipt } from "react-icons/tb";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { PiHeadphonesBold } from "react-icons/pi";
-import { RxDashboard } from "react-icons/rx";
-import { TbCreditCard } from "react-icons/tb";
+// import { BiBarChartAlt2, BiUserCircle } from "react-icons/bi";
+// import { HiOutlineLogout, HiOutlineUsers } from "react-icons/hi";
+// import { TbReceipt } from "react-icons/tb";
+// import { MdOutlineShoppingCart } from "react-icons/md";
+// import { PiHeadphonesBold } from "react-icons/pi";
+// import { RxDashboard } from "react-icons/rx";
+// import { TbCreditCard } from "react-icons/tb";
 
 
 // icons

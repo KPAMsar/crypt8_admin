@@ -7,17 +7,16 @@ import { useLocation } from "react-router-dom";
 
 
 
-const SideBar = () => {
+const SideBar = ({ handleSidebar}) => {
 
 
   const [active, setActive] = useState('');
-
+// const  handleSidebar
 
 
   const location = useLocation();
 
-  console.log('the active tab is ', active)
-  console.log('the act ', location.pathname)
+
   if (active === location.pathname) {
     console.log('the active tab is ', active)
   }
