@@ -83,8 +83,8 @@ const Profile = () => {
             ></div>
 
             <div
-                className={`h-full  items-center w-[95%]  md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4  left-[2.5%] right-[2.5%] lg:right-7 transform ${isModalOpen ? "translate-y-0" : "-translate-y-[-200%] "
-                    } transition-transform duration-300 ease-in-out`}
+                className={`h-[100dvh]  items-center w-[95%]  md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4  left-[2.5%] right-[2.5%] lg:right-7 transform ${isModalOpen ? "translate-y-0" : "-translate-y-[-200%] "
+                    } transition-transform duration-300 ease-in-out pb-[30px]`}
             >
                 {/* modal content goes here */}
                 <div className="p-3 w-full">

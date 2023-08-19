@@ -37,7 +37,7 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
 
   return (
     <>
-      <div className=" lg:mb-[6rem] w-[100dvw] overflow-hidden lg:pl-[48px]  ">
+      <div className=" lg:mb-[6rem] w-[100dvw] overflow-hidden lg:pl-[48px]   ">
         <div className="pl-[16px] ] ">
           <p
             onClick={handleSidebar}
@@ -45,13 +45,13 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
           >
             Welcome Crypt8
           </p>
-          <div className="flex lg:hidden  justify-between">
+          <div className="flex lg:hidden  justify-between mb-3">
               <div className=" lg:block ">
                 <p className="text-[white] text-[20px] ">Overview</p>
 
               </div>
               
-        <div className="d-flex border-[#9CFA4A] border  rounded-lg border-solid p-[auto] bg-[#0E0E0E] w-[161px] h-[36px] items-center justify-center ">
+        <div className="d-flex border-[#9CFA4A] border mb-3 mr-3  rounded-lg border-solid p-[auto] bg-[#0E0E0E] w-[161px] h-[36px] items-center justify-center ">
           <p className="text-[#9CFA4A]  items-center justify-center text-[14px] flex">
             1 BTC = $28485.77 USD
           </p>
@@ -132,7 +132,7 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
               </div>
             </div>
 
-            <div className="lg:flex lg:space-y-[19px] lg:flex-col space-y-[20px] ">
+            <div className="lg:flex  lg:space-y-[19px] lg:flex-col space-y-[20px] ">
               <BtcRateBox />
               <CryptoColordCard
                 currency="Digital Currency"

@@ -1,56 +1,66 @@
 import RoundPhotoIcon from '../../assets/Icons/roundPhotoIcon.png';
 import SearchIcon from '../../../src/assets/Icons/searchIcon.svg';
 import UpDownIcon from '../../assets/Icons/searchUpandDownArrow.svg';
+import ThreeDots from '../../../src/assets/Icons/thress-dots.svg';
 
 import { useState } from 'react';
 
 
 const DashboadGiftCard = () => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [show,setShow]= useState(false);
+    //   [hide,setHide] = useState(false);
+    console.log(show)
 
-    const toggleModal = () => {
-        console.log(isModalOpen)
-        setIsModalOpen((prev) => !prev);
-      };
 
-    const data = [1, 2, 3, 4, 5]
-    return (
-        <>
-            <div className="pl-[] lg:p-[66px]">
-                <div>
-                    <p className=" text-[white] pb-[78px]">Gift Card List</p>
+
+
+
+const data = [1, 2, 3, 4, 5]
+return (
+    <>
+        <div className="lg:mb-[6rem] w-[100dvw] lg:w-[100%] overflow-hidden md:pl-[30px] pr-[10px] pl-[10px] md:pr-[30px] lg:pl-[48px] mt-[100px] lg:mt-[100px] lg:pr-[40px]">
+            <div>
+                <p className=" text-[white] pb-[78px] text-[20px] font-[600]">Gift Card List</p>
+            </div>
+
+            <div className='lg:bg-[#0E0E0E]'>
+
+                <div className='flex justify-between lg:p-[35px] pb-[10px]'>
+                    <p className='text-[white]'></p>
+                    <p style={{
+                        background:
+                            "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
+                    }} className='text-[#9CFA4A]  p-2 lg:px-[150px] px-[90px] py-[15px] lg:py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  ' onClick={ ()=>setShow(true)} >Add Gift Card</p>
+                      {/* <label className="btn btn-primary" htmlFor="modal-1">Open Modal</label> */}
                 </div>
 
-                <div className='bg-[#0E0E0E]'>
-
-                    <div className='flex justify-between p-[35px]'>
-                        <p className='text-[white]'>Gift Card List</p>
-                        <p style={{
-                            background:
-                                "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
-                        }} className='text-[#9CFA4A]  lg:p-2 lg:px-[150px] lg:py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B] p-2 px-[100px] py-2 ' onClick={toggleModal} >Add Gift Card</p>
-                          {/* <label className="btn btn-primary" htmlFor="modal-1">Open Modal</label> */}
+                <div className="flex justify-between p-[35px] bg-[#0E0E0E] lg:bg-[]">
+                    <p className="text-[white] text-[20px] ">Gift Card</p>
+                    <div className="flex gap-4 justify-between lg:hidden">
+                        <img src={SearchIcon} alt="" />
+                        <img src={ThreeDots} alt="" />
+                    </div>
+                </div>
+                
+                 <div className='lg:flex justify-between p-[35px] hidden '>
+                    <div className='flex text-[#9CFA4A]  gap-4  items-center '>
+                    <p>Show</p>
+                    <div className='border border-2 border-[#9CFA4A2B] w-[176px] rounded-lg  h-[40px]'>
+                        <img src={UpDownIcon} alt="" />
+                    </div>
+                    <p>Entries</p>
                     </div>
 
-                    
-                     <div className='flex justify-between p-[35px] '>
-                        <div className='flex text-[#9CFA4A]  gap-4  items-center '>
-                        <p>Show</p>
-                        <div className='border border-2 border-[#9CFA4A2B] w-[176px] rounded-lg  h-[40px]'>
-                            <img src={UpDownIcon} alt="" />
-                        </div>
-                        <p>Entries</p>
-                        </div>
-
-                        <div  className='flex  justify-start flex-start rounded-lg gap-2 text-[#9CFA4A]  p-2 px-[100px] border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  '>
-                        <img src={SearchIcon} alt="" /> Search
-                        </div>
-                    </div> 
+                    <div  className='flex  justify-start flex-start rounded-lg gap-2 text-[#9CFA4A]  p-2 px-[100px] border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  '>
+                    <img src={SearchIcon} alt="" /> Search
+                    </div>
+                </div> 
 
 
 
-                    <table className="table w-full pb-[60px]"  >
+                <div className='overflow-x-auto'>
+                    <table className="table w-full pb-[60px] bg-[#0E0E0E] lg:bg-[]"  >
                         <thead className="text-white ">
                             <th>S/N</th>
                             <th>Logo</th>
@@ -74,37 +84,18 @@ const DashboadGiftCard = () => {
                                     </td>
                                 </tr>
                             ))}
-
-
                         </tbody>
                     </table>
                 </div>
             </div>
-
-
-
-
-            <div className={`modal ${isModalOpen ? 'visible' : 'hidden'}`}>
-        <label className="modal-overlay" htmlFor="modal-1" onClick={toggleModal}></label>
-        <div className="modal-content flex flex-col gap-5">
-          <label htmlFor="modal-1" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-            ✕
-          </label>
-          <h2 className="text-xl">Modal title 1</h2>
-          <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur dolorum voluptate ratione dicta. Maxime
-            cupiditate, est commodi consectetur earum iure, optio, obcaecati in nulla saepe maiores nobis iste quasi
-            alias!
-          </span>
-          <div className="flex gap-3">
-            <button className="btn btn-error btn-block">Delete</button>
-            <button className="btn btn-block">Cancel</button>
-          </div>
         </div>
-      </div>
-    
-        </>
-    );
+
+
+
+
+
+    </>
+);
 }
 
 export default DashboadGiftCard;
