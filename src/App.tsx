@@ -17,7 +17,7 @@ import SystemConfiguration from "./pages/System-Configuration/systemConfiguratio
 import Transactions from "./pages/Transactions/transactions";
 import Users from "./pages/Users/users";
 import Wallet from "./pages/Wallet/wallet";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import DashboadGiftCard from "./pages/Dashboard/dashboadGiftCard";
 import DashboardDigitalCurrency from "./pages/Dashboard/dashboardDigitalCurrency";
 import DashboardFiatCurrency from "./pages/Dashboard/dashboardFiatCurrency";
@@ -26,19 +26,25 @@ import Deposite from "./pages/Deposite/deposite";
 import CryptoCurrencyTransfer from "./pages/Crypto-Currency-Transfer/cryptoCurrencyTransfer";
 
 
+// type ContextType = string |  [] |boolean; 
+// const Context = createContext<ContextType | undefined>(undefined);
+
+
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const handleSidebar = () => setSideBarOpen(!sideBarOpen);
+
+ 
 
 
 
   const router = createBrowserRouter(
     createRoutesFromElements(
+    
       <Route>
         
         <Route path="/" element={<DashboardLayout sideBarOpen={sideBarOpen} handleSidebar={handleSidebar} />}>
           <Route path="/" element={ <Dashboard handleSidebar={handleSidebar} />} />
-           
        
           <Route path="btc-transfer" element={<BtcTransfer />} />
           <Route path="crypto-currency-transfer" element={<CryptoCurrencyTransfer  />} />
@@ -67,6 +73,7 @@ function App() {
              <Route path="/gift-card" element={ < DashboadGiftCard />} />
         </Route>
       </Route>
+     
     )
   );
   return (

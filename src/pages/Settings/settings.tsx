@@ -6,7 +6,7 @@ const Settings = () => {
     <>
       <div className=" pl-[40px] pr-[40px] pt-[60px] w-full">
           <p  className=" text-white  pb-[78px] text-[24px]"> Settings</p>
-          <div className=' items-center w-[90px] h-[90px]  justif'>
+          <div className=' items-center w-[90px] h-[90px] justify-center'>
             <div className=" flex flex-col justify-center ">
                 <img src={ SettingsPhotoImg} className="w-[90px] h-[90px]" alt="" />
                 <p className='text-white text-[24px] '>Crypt8</p>

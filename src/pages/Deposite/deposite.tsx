@@ -3,9 +3,20 @@ import UpDownIcon from "../../assets/Icons/searchUpandDownArrow.svg";
 import { Modal, Form } from "react-bootstrap";
 import ThreeDots from '../../../src/assets/Icons/thress-dots.svg';
 import { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 
 const Deposite = () => {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const initModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     const [currency, setCurrency] = useState(0);
 
     const data = [1, 2, 3, 4, 5];
@@ -36,7 +47,7 @@ const Deposite = () => {
 
                         <div className="flex text-white gap-6  bg-[RGB(35,31,32)] max-h-[40px] p-3 PX-4 items-center rounded-[8px]">
                             <p
-                                className={` min-w-[60px] rounded-lg text-center py-[4px] px-[3px]   ${currency === 0 ? "bg-[#9CFA4A]" : ""
+                                className={` min-w-[60px] rounded-lg text-center py-[4px] px-[3px]   ${currency === 0 ? "bg-[#9CFA4A] text-[black]" : ""
                                     } 
                    `}
                                 onClick={() => setCurrency(0)}
@@ -44,14 +55,14 @@ const Deposite = () => {
                                 BTC
                             </p>
                             <p
-                                className={` min-w-[60px] rounded-lg text-center py-[4px] px-[3px] ${currency === 1 ? "bg-[#9CFA4A]" : ""
+                                className={` min-w-[60px] rounded-lg text-center py-[4px] px-[3px] ${currency === 1 ? "bg-[#9CFA4A] text-[black]" : ""
                                     }  `}
                                 onClick={() => setCurrency(1)}
                             >
                                 USDT
                             </p>
                             <p
-                                className={` min-w-[60px] rounded-lg text-center py-[4px] px-[2px]   ${currency === 2 ? "bg-[#9CFA4A]" : ""
+                                className={` min-w-[60px] rounded-lg text-center py-[4px] px-[2px]   ${currency === 2 ? "bg-[#9CFA4A] text-[black] text-[500]`" : ""
                                     } `}
                                 onClick={() => setCurrency(2)}
                             >
@@ -75,6 +86,7 @@ const Deposite = () => {
                                 <th className="min-w-[120px]">Dollar Value</th>
                                 <th className="min-w-[120px]">Date</th>
                                 <th className="min-w-[120px]">Status</th>
+                                <th className="min-w-[120px]"></th>
                             </thead>
                             <tbody className="bg-[#0E0E0E]  ">
                                 {data.map((item) => (
@@ -133,6 +145,7 @@ const Deposite = () => {
                                             </button>
                         
                                         </td>
+                                        <td onClick={initModal} style={{ border: "none" }}><img src={ThreeDots} alt="" /></td>
                                     </tr>
                                 ))}{" "}
                             </tbody>
@@ -140,6 +153,77 @@ const Deposite = () => {
                     </div>
                 </div>
             </div>
+
+
+
+            {/* MODAL */}
+            <div
+                className={` ${isModalOpen
+                    ? "fixed top-0 right-0 z-20 h-[100dvh] w-[100dvw] bg-[rgba(210,210,210,0.5)]"
+                    : " "
+                    } `}
+            ></div>
+
+            <div
+                className={`h-[100dvh]  items-center w-[95%]   md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg lg:  z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4  left-[2.5%] right-[2.5%] lg:right-7 transform ${isModalOpen ? "translate-y-0" : "-translate-y-[-200%] "
+                    } transition-transform duration-300 ease-in-out pb-[30px]`}
+            >
+                {/* modal content goes here */}
+                <div className="p-3 w-full">
+                    <div
+                        className="flex  justify-between pl-[40px] lg:pl-[32rem]"
+                        onClick={closeModal}
+                    >
+
+                        {/* <img src={ModalCloseIcon} alt="" /> */}
+                        <AiOutlineClose className=" text-[30px] items-end text-[#9CFA4A] font-[700] absolute top-[20px] right-[30px]" />
+                    </div>
+                    <div>
+                        <h2 className=" text-[#FFFFFF]  text-[24px] text-center pt-[40px] pb-[50px]">
+                            Add Digital Currency
+                        </h2>
+                        <div className="flex  flex-col gap-4 ">
+                            <div className=" bg-[#0E0E0E]  lg:h-[90px]  justify-between flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%] h-[120px]">
+                                <small className=" text-[#666666]  text-[12px] ">
+                                    {" "}
+                                    Currency Name
+                                </small>
+                                <p className="text-white text-[20px]">Cash</p>
+                            </div>
+                            <div className=" bg-[#0E0E0E] justify-between h-[120px] flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%]">
+                                <small className=" text-[#666666]  text-[12px] ">
+                                    {" "}
+                                    Currecncy Logo
+                                </small>
+
+
+
+                                <div className='  justify-center'>
+                                    <label htmlFor="app" ><input type="file" accept="images/*" id="app" hidden required />
+                                        <p className="text-white text-[16px] border w-[110px] border-[#9CFA4A]  p-[7px] rounded-lg">Choose File</p>
+                                    </label>
+
+
+                                </div>
+                            </div>
+
+
+
+                            <p
+                                style={{
+                                    background:
+                                        "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
+                                }}
+                                className="text-[#9CFA4A]  p-2 px-[100px] py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  text-center "
+                                onClick={initModal}
+                            >
+                                Save
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </>
     );
 };

@@ -5,8 +5,9 @@ import CryptoCard from "../../components/CryptoCard";
 import DashboardBarChart from "../../components/BarChart";
 import RecentDepositeTable from "../../components/RecentDepositeTable";
 import { useState } from "react";
-import { LineChart } from "recharts";
 import { useNavigate } from "react-router-dom";
+import LineGraph from "../../components/LineGraph";
+import PieCharts from "../../components/PieCharts";
 
 
 const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
@@ -125,8 +126,9 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
               <div className="bg-[#0E0E0] w-[867px] h-[350px]   ">
                 
                 { graphTab === 0 && <DashboardBarChart />}
-                { graphTab === 1 && <LineChart />}
-                { graphTab === 2 && <DashboardBarChart />}
+                {/* { graphTab === 1 && <LineChart />} */}
+                { graphTab === 1 && <LineGraph />}
+                { graphTab === 2 && <PieCharts />}
                 
 
               </div>

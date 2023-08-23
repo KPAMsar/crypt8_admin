@@ -19,14 +19,14 @@ const DashboardFiatCurrency = () => {
         setIsModalOpen(false);
     };
 
-    
-          const [show,setShow]= useState(false);
-        //   [hide,setHide] = useState(false);
-        console.log(show)
 
- 
-    
-   
+    const [show, setShow] = useState(false);
+    //   [hide,setHide] = useState(false);
+    console.log(show)
+
+
+
+
 
     const data = [1, 2, 3, 4, 5]
     return (
@@ -46,8 +46,8 @@ const DashboardFiatCurrency = () => {
                         }} className='text-[#9CFA4A]  p-2 lg:px-[150px] px-[90px] py-[15px] lg:py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  ' onClick={() => {
                             setShow(true);
                             initModal();
-                          }} >Add Gift Card</p>
-                          {/* <label className="btn btn-primary" htmlFor="modal-1">Open Modal</label> */}
+                        }} >Add Gift Card</p>
+                        {/* <label className="btn btn-primary" htmlFor="modal-1">Open Modal</label> */}
                     </div>
 
                     <div className="flex justify-between p-[35px] bg-[#0E0E0E] lg:bg-[]">
@@ -57,20 +57,20 @@ const DashboardFiatCurrency = () => {
                             <img src={ThreeDots} alt="" />
                         </div>
                     </div>
-                    
-                     <div className='lg:flex justify-between p-[35px] hidden '>
+
+                    <div className='lg:flex justify-between p-[35px] hidden '>
                         <div className='flex text-[#9CFA4A]  gap-4  items-center '>
-                        <p>Show</p>
-                        <div className='border border-2 border-[#9CFA4A2B] w-[176px] rounded-lg  h-[40px]'>
-                            <img src={UpDownIcon} alt="" />
-                        </div>
-                        <p>Entries</p>
+                            <p>Show</p>
+                            <div className='border border-2 border-[#9CFA4A2B] w-[176px] rounded-lg  h-[40px]'>
+                                <img src={UpDownIcon} alt="" />
+                            </div>
+                            <p>Entries</p>
                         </div>
 
-                        <div  className='flex  justify-start flex-start rounded-lg gap-2 text-[#9CFA4A]  p-2 px-[100px] border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  '>
-                        <img src={SearchIcon} alt="" /> Search
+                        <div className='flex  justify-start flex-start rounded-lg gap-2 text-[#9CFA4A]  p-2 px-[100px] border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  '>
+                            <img src={SearchIcon} alt="" /> Search
                         </div>
-                    </div> 
+                    </div>
 
 
 
@@ -118,7 +118,7 @@ const DashboardFiatCurrency = () => {
             ></div>
 
             <div
-                className={`h-[100dvh]  items-center w-[95%]  md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4  left-[2.5%] right-[2.5%] lg:right-7 transform ${isModalOpen ? "translate-y-0" : "-translate-y-[-200%] "
+                className={`h-[100dvh]  items-center w-[95%]   md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg lg:  z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4  left-[2.5%] right-[2.5%] lg:right-7 transform ${isModalOpen ? "translate-y-0" : "-translate-y-[-200%] "
                     } transition-transform duration-300 ease-in-out pb-[30px]`}
             >
                 {/* modal content goes here */}
@@ -133,26 +133,35 @@ const DashboardFiatCurrency = () => {
                     </div>
                     <div>
                         <h2 className=" text-[#FFFFFF]  text-[24px] text-center pt-[40px] pb-[50px]">
-                            Add Gift Card
+                            Add Digital Currency
                         </h2>
                         <div className="flex  flex-col gap-4 ">
-                            <div className=" bg-[#0E0E0E] h-[80px] lg:h-[90px] flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%]">
+                            <div className=" bg-[#0E0E0E]  lg:h-[90px]  justify-between flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%] h-[120px]">
                                 <small className=" text-[#666666]  text-[12px] ">
                                     {" "}
                                     Currency Name
                                 </small>
-                                <p className="text-white text-[16px]">Cash</p>
+                                <p className="text-white text-[20px]">Cash</p>
                             </div>
-                            <div className=" bg-[#0E0E0E] h-[80px] lg:h-[90px] flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%]">
+                            <div className=" bg-[#0E0E0E] justify-between h-[120px] flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%]">
                                 <small className=" text-[#666666]  text-[12px] ">
                                     {" "}
-                                    First Name
+                                    Currecncy Logo
                                 </small>
-                                <p className="text-white text-[16px]">Cash</p>
+
+
+
+                                <div className='  justify-center'>
+                                    <label htmlFor="app" ><input type="file" accept="images/*" id="app" hidden required />
+                                        <p className="text-white text-[16px] border w-[110px] border-[#9CFA4A]  p-[7px] rounded-lg">Choose File</p>
+                                    </label>
+
+
+                                </div>
                             </div>
-                         
-                          
-                        
+
+
+
                             <p
                                 style={{
                                     background:
@@ -167,7 +176,7 @@ const DashboardFiatCurrency = () => {
                     </div>
                 </div>
             </div>
- 
+
         </>
     );
 }
