@@ -17,13 +17,14 @@ import SystemConfiguration from "./pages/System-Configuration/systemConfiguratio
 import Transactions from "./pages/Transactions/transactions";
 import Users from "./pages/Users/users";
 import Wallet from "./pages/Wallet/wallet";
-import { createContext, useState } from "react";
+import { useState } from "react";
 import DashboadGiftCard from "./pages/Dashboard/dashboadGiftCard";
 import DashboardDigitalCurrency from "./pages/Dashboard/dashboardDigitalCurrency";
 import DashboardFiatCurrency from "./pages/Dashboard/dashboardFiatCurrency";
 import DashboardCryptoCurrency from "./pages/Dashboard/dashboardCryptoCurrency";
 import Deposite from "./pages/Deposite/deposite";
 import CryptoCurrencyTransfer from "./pages/Crypto-Currency-Transfer/cryptoCurrencyTransfer";
+import Login from "./pages/Auth/login";
 
 
 // type ContextType = string |  [] |boolean; 
@@ -42,7 +43,9 @@ function App() {
     createRoutesFromElements(
     
       <Route>
-        
+     
+         <Route path="login" element={<Login/>} />
+
         <Route path="/" element={<DashboardLayout sideBarOpen={sideBarOpen} handleSidebar={handleSidebar} />}>
           <Route path="/" element={ <Dashboard handleSidebar={handleSidebar} />} />
        
@@ -62,7 +65,7 @@ function App() {
           <Route path="users" element={<Users />} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="gift-card" element={<DashboadGiftCard />} />
-
+         
 
 
 
