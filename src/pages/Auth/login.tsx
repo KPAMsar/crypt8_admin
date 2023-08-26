@@ -32,30 +32,31 @@ const Login = () => {
         const  adminUser = await LoginAdmin({email, password});
 
         toast.update(infoBox, { render: "Success!", type: "success", isLoading: false, autoClose: 4000, hideProgressBar: false, closeOnClick: true, progress: undefined });
+        
 
            console.log('thee',adminUser)
         // updateUser(user);
 
         // navigate("/dashboard", { replace: true });
           window.localStorage.setItem('crypt8-admin-authtoken', adminUser.data.token);
-         window.location.replace('/');
 
-        }
-        catch(error){
+          window.location.replace('/');
 
-            const displayMsg= error?.data?.message
-            
-        toast.update(displayMsg, {
-            render:displayMsg,
-            type: "error",
-            isLoading: false,
-            hideProgressBar: false,
-            closeOnClick: true,
-            progress: undefined,
-          });
-        }
-    }
-
+        }catch (error) {
+            const displayMsg = error?.data?.message;
+        
+           
+            toast.error(infoBox, {
+             
+              type: "error",
+              isLoading: false,
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              progress: undefined,
+            });
+          }
+        };
 
 
     return (
