@@ -19,7 +19,7 @@ const CryptoColordCard = ({currency,  click, borderColor, textColor}: CryptoColo
           background:
             "linear-gradient(120deg, #9CFA4A 0%, rgba(156, 250, 74, 0.00) 55%) ",
         }}
-        className={`w-[370px] lg:w-[320px] h-[100px] lg:h-[124px] flex items-center justify-between bg-[#0E0E0E] 
+        className={`w-[370px] sm:w-[100%] sm:h-[160px] lg:w-[320px] h-[100px] lg:h-[124px] flex items-center justify-between bg-[#0E0E0E] 
         opacity-90 border border-[${borderColor}] border-1 rounded-sm pl-[20px] pr-[20px] `}
         
         onClick={click}

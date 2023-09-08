@@ -38,8 +38,8 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
 
   return (
     <>
-      <div className=" lg:mb-[6rem] w-[100dvw] overflow-hidden lg:pl-[48px]   ">
-        <div className="pl-[16px] ] ">
+      <div className=" lg:mb-[6rem] w-[100dvw] overflow-hidden lg:pl-[48px]    ">
+        <div className="pl-[16px]  sm:pr-[20px]">
           <p
             onClick={handleSidebar}
             className=" text-white text-[20px] lg:text-[24px] space-[-0.12px]   lg:pl-[48px] mt-[100px] lg:mt-[61px]  mb-[76px]"

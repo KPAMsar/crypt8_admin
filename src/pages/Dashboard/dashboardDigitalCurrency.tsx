@@ -3,14 +3,29 @@ import SearchIcon from "../../../src/assets/Icons/searchIcon.svg";
 import UpDownIcon from "../../assets/Icons/searchUpandDownArrow.svg";
 import ModalCloseIcon from "../../../src/assets/Icons/ModalCloseIcon.svg";
 import ThreeDots from '../../../src/assets/Icons/thress-dots.svg';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import DashboardCryptoCurrency from "./dashboardCryptoCurrency";
 import { AiOutlineClose } from "react-icons/ai";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { LineWave, RotatingLines } from "react-loader-spinner";
+import { getDigitalCurrency } from "../../features/api/digital-currency/digitalCurrencyApi";
+import { DigitalSingleData } from "../../features/api/digital-currency/digitalCurrencyModel";
+
 
 const DashboardDigitalCurrency = () => {
+
  
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [digitalCurrency, setDigitalCurrency] = useState<DigitalSingleData[]>([]);
+  const [currencyName, setCurrencyName] = useState('');
+  const [currencyImage, setCurrencyImage] = useState('');
+  const [rotate, setRotate] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [imageName, setImageName] = useState(false);
+  const [show,setShow]= useState(false);
+
 
   const initModal = () => {
       setIsModalOpen(true);
@@ -20,10 +35,27 @@ const DashboardDigitalCurrency = () => {
       setIsModalOpen(false);
   };
 
+  const fetchAllDigitalCurrency = async () => {
+    setRotate(true);
+    try {
+        const data = await getDigitalCurrency();
+        setRotate(false);
+        setDigitalCurrency(data)
+       
+         console.log('data digital currecny', data);
 
-  const [show,setShow]= useState(false);
-  //   [hide,setHide] = useState(false);
-  console.log(show)
+    }
+    catch (error) {
+        console.log('errir',error);
+    }
+}
+
+  
+useEffect(() => {
+
+    fetchAllDigitalCurrency();
+
+}, [])
 
 
 
@@ -83,7 +115,7 @@ return (
                           <th>Delete</th>
                       </thead>
                       <tbody className='bg-[#0E0E0E]  '>
-                          {data.map((items, index) => (
+                          {digitalCurrency.map((items, index) => (
                               <tr style={{ border: 'none', justifyItems: ' center' }}>
                                   <th style={{ border: 'none', paddingLeft: '3rem' }} className='p-[1rem] '>{index + 1}</th>
                                   <th style={{ border: 'none' }} className='p-[1rem]'><img src={RoundPhotoIcon} alt="" /></th>
@@ -99,6 +131,10 @@ return (
                           ))}
                       </tbody>
                   </table>
+                  {rotate &&  <div className='flex justify-center items-center w-full bg-[#0E0E0E] '>
+                                <LineWave color="red" middleLineColor="green" lastLineColor="green" />
+                                      </div>
+                            }
               </div>
           </div>
       </div>
