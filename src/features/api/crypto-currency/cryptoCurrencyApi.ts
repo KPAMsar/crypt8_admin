@@ -20,9 +20,6 @@ export const getCryptoCurrency = async () => {
 
 export const addCryptoCurrency = async (payload)=>{
   try{
-    // console.log('payload',...payload)
-    // const {image, name = payload
-// console.log('here',...payload.image)
     const {data} = await api.post(`${URL}/add-crypto-currency`,payload,{headers:{
       'Content-Type':'multipart/form-data',
     }});
@@ -34,22 +31,26 @@ export const addCryptoCurrency = async (payload)=>{
 }
 
 
-// export const updateCryptoCurrency = async (payload:any)=>{
-//   try{
-//     const data = await api.post(`${URL}/modify-digital-currency`,{
-//     payload
-//     });
-//   }
-//   catch(error){
-//     throw error;
-//   }
-// }
+export const updateCryptoCurrency = async(payload, id) =>{
+  try{
+      const {data} = await api.post(`${URL}/modify-crypto-currency/${id}`,{name:payload});
+      return data
+      
+    } catch(error){
+      console.error("Error fetching crypto currency:", error);
+      throw error;
+    }
+}
 
-// export const removeCryptoCurrency = async (payload:any) =>{
-//   try{
-//     const data = await api.delete(`${URL}/delete-digital-currency`,{});
-//   }
-//   catch(error){
-//     throw error;
-//   }
-// }
+
+export const deleteCryptoCurrency = async(payload) =>{
+
+  try{
+      const {data} = await api.delete(`${URL}/delete-crypto-currency`,{ data: { cryptoId: payload } });
+      return data;
+     
+    } catch(error){
+      console.error("Error fetching crypto currency:", error);
+      throw error;
+    }
+}

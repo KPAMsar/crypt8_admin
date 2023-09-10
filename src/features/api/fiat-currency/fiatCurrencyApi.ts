@@ -1,15 +1,15 @@
 import api from "../../../lib/axios";
-import { DigitalCurrencyRes} from "./digitalCurrencyModel";
+import { FiatCurrencyRes } from "./fiatCurrencyModel";
 import { URL } from "../../../lib/params";
 
 
 
-export const getDigitalCurrency = async () => {
+export const getFiatCurrency = async () => {
     try {
-      const response = await api.get(`${URL}/list-crypto-currencies`);
+      const response = await api.get(`${URL}/list-fiat-currencies`);
       
   
-      const { data }: { data: DigitalCurrencyRes } = response;
+      const { data }: { data: FiatCurrencyRes } = response;
       return data;
     } catch (error) {
       console.error("Error fetching crypto currency:", error);
@@ -18,9 +18,9 @@ export const getDigitalCurrency = async () => {
   };
   
   
-  export const addDigitalCurrency = async (payload)=>{
+  export const addFiatCurrency = async (payload)=>{
     try{
-      const {data} = await api.post(`${URL}/add-digital-currency`,payload,{headers:{
+      const {data} = await api.post(`${URL}/add-fiat-currency`,payload,{headers:{
         'Content-Type':'multipart/form-data',
       }});
       console.log(data)
@@ -29,10 +29,10 @@ export const getDigitalCurrency = async () => {
       throw error;
     }
   }
-  
-  export const updateDigitalCurrency = async(payload, id) =>{
+
+  export const updateFiatCurrency = async(payload, id) =>{
     try{
-        const {data} = await api.post(`${URL}/modify-digital-currency/${id}`,{name:payload});
+        const {data} = await api.post(`${URL}/modify-fiat-currency/${id}`,{name:payload});
         console.log(data)
       } catch(error){
         console.error("Error fetching crypto currency:", error);
@@ -42,10 +42,10 @@ export const getDigitalCurrency = async () => {
   
   
   
-  export const deleteDigitalCurrency = async(payload) =>{
+  export const deleteFiatCurrency = async(payload) =>{
 
     try{
-        const {data} = await api.delete(`${URL}/delete-digital-currency`,{ data: { digitalId: payload } });
+        const {data} = await api.delete(`${URL}/delete-fiat-currency`,{ data: { cryptoId: payload } });
         return data;
        
       } catch(error){

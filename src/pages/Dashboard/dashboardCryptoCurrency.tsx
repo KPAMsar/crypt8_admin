@@ -7,7 +7,7 @@ import { URL } from '../../lib/params';
 // import { useGetCryptoCurrencyQuery } from '../../features/api/crypto-currency/cryptoCurrencyApi';
 import { useState, useEffect } from 'react';
 // import { getCryptoCurrency } from '../../features/api/crypto-currency/cryptoCurrencyApi';
-import { addCryptoCurrency, getCryptoCurrency } from '../../features/api/crypto-currency/cryptoCurrencyApi';
+import { addCryptoCurrency, getCryptoCurrency,updateCryptoCurrency,deleteCryptoCurrency } from '../../features/api/crypto-currency/cryptoCurrencyApi';
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { LineWave, RotatingLines } from "react-loader-spinner";
@@ -36,7 +36,14 @@ const DashboardCryptoCurrency = () => {
     const [rotate, setRotate] = useState(false);
     const [loading, setLoading] = useState(false);
     const [imageName, setImageName] = useState(false);
-   
+    const [selectedId, setSelectedId] = useState('');
+    const [update, setUpdate] = useState(false);
+    const [updateId, setUpdateId] = useState('');
+    const [show, setShow] = useState(false);
+    const [deleteing, setDeleting] = useState(false);
+    const [deleteSuccess, setDeleteSuccess]=useState(false);
+
+
     // const res = GetCryptoCurrency()
     // console.log('da', res);
 
@@ -97,8 +104,57 @@ const DashboardCryptoCurrency = () => {
             setLoading(false);
           console.error('Error adding crypto currency:', error);
         }
+        finally{
+            setShow(false);
+        }
       };
 
+      const handleUpdate = async (e) =>{
+        e.preventDefault();
+        setLoading(true);
+        if (!currencyName) {
+            toast.error('Currency Name is required');
+            return;
+        }
+    
+        try {
+            const response = await updateCryptoCurrency(currencyName,updateId);
+            console.log('Response from  update CryptoCurrency:', response);
+        
+            toast.success('Currency updated successful');
+            closeModal();
+            setCurrencyName('');
+            setCurrencyImage(null);
+            setLoading(false);
+            setIsModalOpen(false);
+            
+            } catch (error) {
+                setLoading(false);
+            console.error('Error adding crypto currency:', error);
+            }
+            finally{
+                setUpdate(false)
+            }
+        }
+
+      const handleDelete = async (e) => {
+      
+        setDeleting(true)
+        e.preventDefault();
+        
+        try {
+           
+            const data = await deleteCryptoCurrency(selectedId); 
+              console.log(data);
+        } catch (error) {
+            console.error(error);
+            return error;
+
+        }
+        finally{
+            setDeleting(false);
+        }
+    }
 
     useEffect(() => {
 
@@ -119,7 +175,6 @@ const DashboardCryptoCurrency = () => {
     };
 
 
-    const [show, setShow] = useState(false);
     //   [hide,setHide] = useState(false);
 
     return (
@@ -184,11 +239,15 @@ const DashboardCryptoCurrency = () => {
                                         <td style={{ border: 'none' }} className='p-[1rem] text-[#787878]'>{items?.name}</td>
                                         <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>{items?.status === '1' ? 'Successful' : 'Pending'} </td>
                                         <td style={{ border: 'none' }} className='p-[1rem] text-center text-[#787878]'>
-                                            <button className="btn mx-auto block bg-[#9CFA4A2B] text-[#9CFA4A]">Edit</button>
+                                            <button className="btn mx-auto block bg-[#9CFA4A2B] text-[#9CFA4A]" onClick={ ()=> {setUpdate(true); setUpdateId(items?.id)} }>Edit</button>
                                         </td>
-                                        <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>
+                                        {/* <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>
                                             <button className="btn  mx-auto block bg-[#DA0808] text-[#f0a9a9]">Delete</button>
-                                        </td>
+                                        </td> */}
+                                         <label htmlFor="modal-1" className="btn mx-auto 
+   bg-[#DA0808] text-[#f0a9a9]" onClick={()=>setSelectedId(items.id)}>
+                                                Delete
+                                            </label>
                                     </tr>
                                 ))}
                             </tbody>
@@ -274,6 +333,80 @@ const DashboardCryptoCurrency = () => {
                                 </button>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+{/* //UPDATE FIAT CURRENCY */}
+<div
+                className={`h-[100dvh]  items-center w-[95%]   md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  lg:absolute lg:right-[0px] flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg   z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4    lg:right-[0%] right-[2.5%] lg:right-7 transform ${update ? "translate-y-0" : "-translate-y-[-200%] "
+                    } transition-transform duration-300 ease-in-out pb-[30px]`}
+            >
+                {/* modal content goes here */}
+                <div className="p-3 w-full">
+                    <div
+                        className="flex  justify-between pl-[40px] lg:pl-[32rem]"
+                        onClick={() => setUpdate(false)}
+                    >
+
+                        {/* <img src={ModalCloseIcon} alt="" /> */}
+                        <AiOutlineClose className=" text-[30px] items-end text-[#9CFA4A] font-[700] absolute top-[20px] right-[30px]" />
+                    </div>
+                    <div>
+                        <h2 className=" text-[#FFFFFF]  text-[24px] text-center pt-[40px] pb-[50px]">
+                            Update Crypto Currency
+                        </h2>
+                        <div className="flex  flex-col gap-4 ">
+                            <form onSubmit={handleUpdate} encType="multipart/form-data">
+                                <div className='bg-[#0E0E0E]'>
+                                    <small className=" text-[#666666] text-[12px] p-4   ">
+                                        {" "}
+                                        Currency Name
+                                    </small>
+                                    <input id="currencyName" name="currencyName" value={currencyName} className=" bg-[#0E0E0E]  text-[white]  lg:h-[60px] h-[50px] mb-[30px]  justify-between flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%] h-[120px]" onChange={ (e)=> {setCurrencyName(e.target.value) }} />
+                                </div>
+
+
+                                <button type="submit"
+                                    style={{
+                                        background:
+                                            "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
+                                    }}
+                                    className="text-[#9CFA4A]  p-2 px-[100px] sm:w-full py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  text-center "
+                                    onClick={initModal}
+                                >
+                                    {!loading && 'Update'}
+                                    {loading &&  <div className='flex justify-center items-center w-full '>
+                                    Update <LineWave color="red" height="60" width="60" middleLineColor="green" lastLineColor="green" />
+                                    </div>}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+              {/* DELETE MODAL */}
+              <div>
+                <input className="modal-state" id="modal-1" type="checkbox" />
+                <div className="modal">
+                    <label className="modal-overlay" htmlFor="modal-1"></label>
+                    <div className={`modal-content flex flex-col gap-5 bg-[#262626] ${deleteing ? 'w-[380px] ' : 'w-auto'}`}>
+
+                        <label htmlFor="modal-1" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 bg-[white]">✕</label>
+                        <h2 className="text-xl text-[white]">Delete </h2>
+                        {!deleteing && <span className='text-[white]'>Are you sure you want to delete item?</span>}
+                        {deleteing && <div className='flex justify-center items-center w-full '>
+                            <span className='text-[white] '>Deleting Gift Card </span>
+                            <LineWave color="red" height="60" width="60" middleLineColor="green" lastLineColor="green" />
+                        </div>}
+                        {!deleteing && <div className="flex gap-3">
+                            <button className="btn btn-error btn-block bg-[#DA0808] " onClick={handleDelete}>Delete</button>
+                            <label htmlFor="modal-1" className="btn  btn-block " > Cancel</label>
+                            {/* <button className="btn btn-block">Cancel</button> */}
+                        </div>}
                     </div>
                 </div>
             </div>
