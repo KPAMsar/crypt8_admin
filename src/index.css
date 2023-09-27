@@ -25,3 +25,21 @@ input::-ms-clear {
 .content-container {
   @apply w-[100-72rem] bg-white h-full p-8 rounded-md
 }
+
+
+
+/* Target the scrollbar track */
+::-webkit-scrollbar {
+  width: 6px; /* Adjust the width as needed */
+}
+
+/* Style the scrollbar thumb with your primary color */
+::-webkit-scrollbar-thumb {
+  background-color: #9CFA4A; /* Your primary color */
+  border-radius: 6px; /* Adjust the border-radius as needed */
+}
+
+/* Style the scrollbar track when hovered with your secondary color */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #31ff93; /* Your secondary color */
+}

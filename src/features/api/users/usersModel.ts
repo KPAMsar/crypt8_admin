@@ -1,4 +1,4 @@
-export type GiftCardSingleData = {
+export type UsersSingleRes = {
     id: string;
     created_at: string;
     status: string;
@@ -6,8 +6,9 @@ export type GiftCardSingleData = {
     name: string;
 }
 
-export type GiftCardCurrencyRes = {
-    cards: GiftCardSingleData[];
+
+export type UserRes = {
+    users: UsersSingleRes[];
     message: string;
     status: string;
 }

@@ -10,12 +10,13 @@ import { useEffect, useState } from 'react';
 import { getGiftCardCurrency, deleteGiftCards } from '../../features/api/gift-card/giftCardApi';
 import { GiftCardSingleData, GiftCardCurrencyRes } from '../../features/api/gift-card/giftCardModel';
 import { addGiftCardCurrency } from '../../features/api/gift-card/giftCardApi';
-import { useRef } from 'react';
+import ReactPaginate from "react-paginate";
+// import { GiftCardCurrencyRes } from '../../features/api/gift-card/giftCardModel';
 
 
 const DashboadGiftCard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [giftCard, setGiftCard] = useState<GiftCardSingleData[]>([]);
+    const [giftCard, setGiftCard] = useState<GiftCardCurrencyRes[]>([]);
     const [currencyName, setCurrencyName] = useState('');
     const [currencyImage, setCurrencyImage] = useState('');
     const [rotate, setRotate] = useState(false);
@@ -25,10 +26,10 @@ const DashboadGiftCard = () => {
     const [update, setUpdate] = useState(false);
     const [updateId, setUpdateId] = useState('');
     const [deleteing, setDeleting] = useState(false);
-    const [deleteSuccess, setDeleteSuccess]=useState(false);
+    // const [deleteSuccess, setDeleteSuccess]=useState(false);
     // const [show,setShow]= useState(false);
 
-    const closeRef = useRef(true);
+
 
     const initModal = () => {
         setIsModalOpen(true);
@@ -48,11 +49,14 @@ const DashboadGiftCard = () => {
     const fetchAllGiftCard = async () => {
         setRotate(true);
         try {
-            const data = await getGiftCardCurrency();
+            const {cards} = await getGiftCardCurrency();
             setRotate(false);
-            setGiftCard(data?.cards)
+            console.log('fetched data',cards)
+            
+            setGiftCard(cards);
+            
 
-            console.log('data digital currecny', data);
+            console.log('cards digital currecny', giftCard);
 
         }
         catch (error) {
@@ -64,7 +68,6 @@ const DashboadGiftCard = () => {
         const files = e.target.files[0];
         setImageName(files.name)
         setCurrencyImage(files);
-
     }
 
     const handleAddGiftCards = async (e) => {
@@ -137,8 +140,6 @@ const DashboadGiftCard = () => {
         e.preventDefault();
         setDeleting(true)
         try {
-
-           
             const data = await deleteGiftCards(selectedId);
             console.log('data from delete', data);
             toast.success(data?.message)
@@ -151,6 +152,23 @@ const DashboadGiftCard = () => {
             setDeleting(false)
         }
     }
+
+
+
+    
+    const [PerItem, setPerItem] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
+  //   Start for Pagination
+  const handlePageClick = ({ selected: selectedPage }) => {
+    setCurrentPage(selectedPage);
+  };
+
+  const offset = currentPage * Number(PerItem);
+  const currentItem = giftCard?.slice(offset, offset + Number(PerItem));
+  const pageCount = Math.ceil(giftCard?.length / Number(PerItem));
+//   End of Pagination
+
+
 
 
 
@@ -214,7 +232,9 @@ const DashboadGiftCard = () => {
                                 <th>Delete</th>
                             </thead>
                             <tbody className='bg-[#0E0E0E]  '>
-                                {giftCard.map((item, index) => (
+                                
+                                {currentItem.length > 0 ? 
+                                (currentItem?.map((item, index) => (
                                     <tr style={{ border: 'none', justifyItems: ' center' }}>
                                         <th style={{ border: 'none', paddingLeft: '3rem' }} className='p-[1rem] '>{index + 1}</th>
                                         <th style={{ border: 'none' }} className='p-[1rem]'><img src={RoundPhotoIcon} alt="" /></th>
@@ -234,32 +254,64 @@ const DashboadGiftCard = () => {
                                         </td>
 
                                     </tr>
-                                ))}
+                                ))): (
+                                    <div>No Records</div>
+                                  )}
                             </tbody>
 
                         </table>
+                        <div className="flex flex-col md:flex-row">
+        <div className="md:w-6/12 lg:w-6/12 md:mb-0 mb-8">
+          <div className="md:flex w-60 md:items-center space-y-2 md:space-y-0 md:space-x-4 mt-10 md:mt-0">
+            <label
+              htmlFor="select"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Showing
+            </label>
+            <select
+              value={PerItem}
+              onChange={(e) => setPerItem(e.target.value)}
+              id="select"
+              aria-label="form-select-sm"
+              className="block w-full p-1 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-300 sm:text-sm"
+            >
+              <option disabled value="">
+                --Select--
+              </option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="75">75</option>
+              <option value="100">100</option>
+            </select>
+            <span className="text-sm text-gray-500 flex w-80">
+              of {currentItem.length} entries
+            </span>
+          </div>
+        </div>
+        <div className="md:w-7/12 lg:w-7/12 md:justify-end">
+          <div className="mt-8 md:mt-0">
+            <ReactPaginate
+              previousLabel={"← Previous"}
+              nextLabel={"Next →"}
+              pageCount={pageCount}
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={1}
+              containerClassName={"flex items-center space-x-2"}
+              previousLinkClassName={"text-green-600"}
+              nextLinkClassName={"text-green-600"}
+              disabledClassName={"text-gray-400"}
+              activeClassName={
+                "text-gray-400 font-bold w-7 h-7 border-2 flex items-center justify-center rounded-lg space-x-2"
+              }
+            />
+          </div>
+        </div>
+      </div>
+                       
 
-                        {/* PAGINATION */}
-                        {/* 
-                        {      !rotate &&               <div className="pagination center">
-                            <button className="btn">
-                                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M12.2574 5.59165C11.9324 5.26665 11.4074 5.26665 11.0824 5.59165L7.25742 9.41665C6.93242 9.74165 6.93242 10.2667 7.25742 10.5917L11.0824 14.4167C11.4074 14.7417 11.9324 14.7417 12.2574 14.4167C12.5824 14.0917 12.5824 13.5667 12.2574 13.2417L9.02409 9.99998L12.2574 6.76665C12.5824 6.44165 12.5741 5.90832 12.2574 5.59165Z" fill="#969696" />
-                                </svg>
-                            </button>
-                            <button className="btn btn-active">1</button>
-                            <button className="btn">2</button>
-                            <button className="btn">3</button>
-                            <button className="btn">
-                                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M7.74375 5.2448C7.41875 5.5698 7.41875 6.0948 7.74375 6.4198L10.9771 9.65314L7.74375 12.8865C7.41875 13.2115 7.41875 13.7365 7.74375 14.0615C8.06875 14.3865 8.59375 14.3865 8.91875 14.0615L12.7437 10.2365C13.0687 9.91147 13.0687 9.38647 12.7437 9.06147L8.91875 5.23647C8.60208 4.9198 8.06875 4.9198 7.74375 5.2448Z" fill="#969696" />
-                                </svg>
-                            </button>
-                        </div>
-                        } */}
 
-
-                        {/* END OF PAGINATION */}
                         {rotate && <div className='flex justify-center items-center w-full bg-[#0E0E0E] '>
                             <LineWave color="red" middleLineColor="green" lastLineColor="green" />
                         </div>
