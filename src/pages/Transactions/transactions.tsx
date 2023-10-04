@@ -3,10 +3,25 @@ import UpDownIcon from "../../assets/Icons/searchUpandDownArrow.svg";
 import ThreeDots from '../../../src/assets/Icons/thress-dots.svg';
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { Pagination } from "../../components/pagination";
 
 const Transactions = () => {
     const [currency, setCurrency] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [rotate, setRotate] = useState(false);
+    
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        
+    }
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(8);
+
+
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+    const currentPosts = allUsers?.slice(firstPostIndex, lastPostIndex);
+
 
     const initModal = () => {
         setIsModalOpen(true);
@@ -16,6 +31,20 @@ const Transactions = () => {
         setIsModalOpen(false);
     };
 
+    const fetchAllTransactions = async () => {
+        setRotate(true);
+        try {
+            const { users } = await getAllUsers();
+            setAllUsers(users)
+            console.log('this is data', users);
+        }
+        catch (error) {
+            console.log('errir', error);
+        }
+        finally {
+            setRotate(false);
+        }
+    }
 
     const data = [1, 2, 3, 4, 5];
     return (
@@ -125,6 +154,16 @@ const Transactions = () => {
                         </table>
                     </div>
                 </div>
+
+                {!rotate && <div className="flex justify-center mt-[10px]">
+                <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={allUsers.length}
+                    onPageChange={handlePageChange}
+                    currentPage={currentPage}
+                />
+            </div>
+            }
             </div>
 
 

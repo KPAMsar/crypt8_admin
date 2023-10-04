@@ -7,15 +7,15 @@ import { Outlet } from "react-router-dom";
 const DashboardLayout = ({ sideBarOpen, handleSidebar }: { sideBarOpen: boolean; handleSidebar: () => void }) => {
 
   //  console.log(sideBarOpen)
- 
+
 
   return (
     <>
-    <div className={` ${sideBarOpen? "fixed top-0 right-0 z-20 h-[100dvh] w-[100dvw] bg-[rgba(58,54,54,0.5)]"
-: ""
-} `} onClick={handleSidebar}>
+      <div className={` ${sideBarOpen ? "fixed top-0 right-0 z-20 h-[100dvh] w-[100dvw] bg-[rgba(58,54,54,0.5)]"
+        : ""
+        } `} onClick={handleSidebar}>
 
-</div>
+      </div>
       <div className="flex relative bg-[#0E0E0E] h-[100dvh] overflow-y-hidden">
         <div
           className={`w-[276px] bg-[#0E0E0E] overflow-y-auto  h-screen fixed z-50 top-0 left-0 transition-[transform] ${sideBarOpen ? "translate-x-0" : "translate-x-[-100%]"
@@ -25,7 +25,7 @@ const DashboardLayout = ({ sideBarOpen, handleSidebar }: { sideBarOpen: boolean;
 
 
         >
-          <SideBar  handleSidebar={handleSidebar} />
+          <SideBar handleSidebar={handleSidebar} />
 
         </div>
 

@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { getGiftCardCurrency, deleteGiftCards } from '../../features/api/gift-card/giftCardApi';
 import { GiftCardSingleData, GiftCardCurrencyRes } from '../../features/api/gift-card/giftCardModel';
 import { addGiftCardCurrency } from '../../features/api/gift-card/giftCardApi';
-import ReactPaginate from "react-paginate";
+
 // import { GiftCardCurrencyRes } from '../../features/api/gift-card/giftCardModel';
 
 
@@ -49,12 +49,12 @@ const DashboadGiftCard = () => {
     const fetchAllGiftCard = async () => {
         setRotate(true);
         try {
-            const {cards} = await getGiftCardCurrency();
+            const { cards } = await getGiftCardCurrency();
             setRotate(false);
-            console.log('fetched data',cards)
-            
+            console.log('fetched data', cards)
+
             setGiftCard(cards);
-            
+
 
             console.log('cards digital currecny', giftCard);
 
@@ -136,7 +136,7 @@ const DashboadGiftCard = () => {
     }
 
     const handleDelete = async (e) => {
-        
+
         e.preventDefault();
         setDeleting(true)
         try {
@@ -148,25 +148,25 @@ const DashboadGiftCard = () => {
             return error;
 
         }
-        finally{
+        finally {
             setDeleting(false)
         }
     }
 
 
 
-    
-    const [PerItem, setPerItem] = useState(10);
-  const [currentPage, setCurrentPage] = useState(0);
-  //   Start for Pagination
-  const handlePageClick = ({ selected: selectedPage }) => {
-    setCurrentPage(selectedPage);
-  };
 
-  const offset = currentPage * Number(PerItem);
-  const currentItem = giftCard?.slice(offset, offset + Number(PerItem));
-  const pageCount = Math.ceil(giftCard?.length / Number(PerItem));
-//   End of Pagination
+    const [PerItem, setPerItem] = useState(10);
+    const [currentPage, setCurrentPage] = useState(0);
+    //   Start for Pagination
+    const handlePageClick = ({ selected: selectedPage }) => {
+        setCurrentPage(selectedPage);
+    };
+
+    const offset = currentPage * Number(PerItem);
+    const currentItem = giftCard?.slice(offset, offset + Number(PerItem));
+    const pageCount = Math.ceil(giftCard?.length / Number(PerItem));
+    //   End of Pagination
 
 
 
@@ -232,84 +232,84 @@ const DashboadGiftCard = () => {
                                 <th>Delete</th>
                             </thead>
                             <tbody className='bg-[#0E0E0E]  '>
-                                
-                                {currentItem.length > 0 ? 
-                                (currentItem?.map((item, index) => (
-                                    <tr style={{ border: 'none', justifyItems: ' center' }}>
-                                        <th style={{ border: 'none', paddingLeft: '3rem' }} className='p-[1rem] '>{index + 1}</th>
-                                        <th style={{ border: 'none' }} className='p-[1rem]'><img src={RoundPhotoIcon} alt="" /></th>
-                                        <td style={{ border: 'none' }} className='p-[1rem] text-[#787878]'>{item?.name}</td>
-                                        <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>{item?.status === '1' ? 'Successful' : 'Pending'}</td>
-                                        <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>
-                                            <button className="btn bg-[#9CFA4A2B]  mx-auto block text-[#9CFA4A]" onClick={ ()=> {setUpdate(true); setUpdateId(item?.id)} }>Edit</button>
-                                        </td>
-                                        {/* <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>
+
+                                {currentItem.length > 0 ?
+                                    (currentItem?.map((item, index) => (
+                                        <tr style={{ border: 'none', justifyItems: ' center' }}>
+                                            <th style={{ border: 'none', paddingLeft: '3rem' }} className='p-[1rem] '>{index + 1}</th>
+                                            <th style={{ border: 'none' }} className='p-[1rem]'><img src={RoundPhotoIcon} alt="" /></th>
+                                            <td style={{ border: 'none' }} className='p-[1rem] text-[#787878]'>{item?.name}</td>
+                                            <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>{item?.status === '1' ? 'Successful' : 'Pending'}</td>
+                                            <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>
+                                                <button className="btn bg-[#9CFA4A2B]  mx-auto block text-[#9CFA4A]" onClick={() => { setUpdate(true); setUpdateId(item?.id) }}>Edit</button>
+                                            </td>
+                                            {/* <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>
                                             <button className="btn  mx-auto block bg-[#DA0808] text-[#f0a9a9]"   htmlFor="modal-1">Delete</button>
                                         </td> */}
-                                        <td style={{ border: 'none' }} className='p-[1rem] text-[#787878]'>
-                                            <label htmlFor="modal-1" className="btn mx-auto 
+                                            <td style={{ border: 'none' }} className='p-[1rem] text-[#787878]'>
+                                                <label htmlFor="modal-1" className="btn mx-auto 
                                                 bg-[#DA0808] text-[#f0a9a9]" onClick={() => setSelectedId(item.id)}>
-                                                Delete
-                                            </label>
-                                        </td>
+                                                    Delete
+                                                </label>
+                                            </td>
 
-                                    </tr>
-                                ))): (
-                                    <div>No Records</div>
-                                  )}
+                                        </tr>
+                                    ))) : (
+                                        <div>No Records</div>
+                                    )}
                             </tbody>
 
                         </table>
                         <div className="flex flex-col md:flex-row">
-        <div className="md:w-6/12 lg:w-6/12 md:mb-0 mb-8">
-          <div className="md:flex w-60 md:items-center space-y-2 md:space-y-0 md:space-x-4 mt-10 md:mt-0">
-            <label
-              htmlFor="select"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Showing
-            </label>
-            <select
-              value={PerItem}
-              onChange={(e) => setPerItem(e.target.value)}
-              id="select"
-              aria-label="form-select-sm"
-              className="block w-full p-1 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-300 sm:text-sm"
-            >
-              <option disabled value="">
-                --Select--
-              </option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="50">50</option>
-              <option value="75">75</option>
-              <option value="100">100</option>
-            </select>
-            <span className="text-sm text-gray-500 flex w-80">
-              of {currentItem.length} entries
-            </span>
-          </div>
-        </div>
-        <div className="md:w-7/12 lg:w-7/12 md:justify-end">
-          <div className="mt-8 md:mt-0">
-            <ReactPaginate
-              previousLabel={"← Previous"}
-              nextLabel={"Next →"}
-              pageCount={pageCount}
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={1}
-              containerClassName={"flex items-center space-x-2"}
-              previousLinkClassName={"text-green-600"}
-              nextLinkClassName={"text-green-600"}
-              disabledClassName={"text-gray-400"}
-              activeClassName={
-                "text-gray-400 font-bold w-7 h-7 border-2 flex items-center justify-center rounded-lg space-x-2"
-              }
-            />
-          </div>
-        </div>
-      </div>
-                       
+                            <div className="md:w-6/12 lg:w-6/12 md:mb-0 mb-8">
+                                <div className="md:flex w-60 md:items-center space-y-2 md:space-y-0 md:space-x-4 mt-10 md:mt-0">
+                                    <label
+                                        htmlFor="select"
+                                        className="block text-sm font-medium text-gray-700"
+                                    >
+                                        Showing
+                                    </label>
+                                    <select
+                                        value={PerItem}
+                                        onChange={(e) => setPerItem(e.target.value)}
+                                        id="select"
+                                        aria-label="form-select-sm"
+                                        className="block w-full p-1 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-300 sm:text-sm"
+                                    >
+                                        <option disabled value="">
+                                            --Select--
+                                        </option>
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="75">75</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    <span className="text-sm text-gray-500 flex w-80">
+                                        of {currentItem.length} entries
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="md:w-7/12 lg:w-7/12 md:justify-end">
+                                <div className="mt-8 md:mt-0">
+                                    <ReactPaginate
+                                        previousLabel={"← Previous"}
+                                        nextLabel={"Next →"}
+                                        pageCount={pageCount}
+                                        onPageChange={handlePageClick}
+                                        pageRangeDisplayed={1}
+                                        containerClassName={"flex items-center space-x-2"}
+                                        previousLinkClassName={"text-green-600"}
+                                        nextLinkClassName={"text-green-600"}
+                                        disabledClassName={"text-gray-400"}
+                                        activeClassName={
+                                            "text-gray-400 font-bold w-7 h-7 border-2 flex items-center justify-center rounded-lg space-x-2"
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
 
 
                         {rotate && <div className='flex justify-center items-center w-full bg-[#0E0E0E] '>

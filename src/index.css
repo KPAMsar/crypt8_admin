@@ -43,3 +43,18 @@ input::-ms-clear {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #31ff93; /* Your secondary color */
 }
+
+.pagi_ li{
+  justify-content: space-around;
+}
+
+.pagination .btn.btn-active{
+  background-color: #9CFA4A;
+}
+
+.pagination .btn{
+  border-color: transparent;
+   border-width: 1px; 
+   min-width: 1.5rem;
+font-weight: 600;
+}

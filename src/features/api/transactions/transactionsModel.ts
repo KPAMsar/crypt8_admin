@@ -1,4 +1,4 @@
-export type UsersSingleRes = {
+export type TransactionSingleRes = {
     id: string;
     created_at: string;
     status: string;
@@ -13,8 +13,8 @@ export type UsersSingleRes = {
 }
 
 
-export type UserRes = {
-    users: UsersSingleRes[];
+export type TransactionRes = {
+    users: TransactionSingleRes[];
     message: string;
     status: string;
 }
