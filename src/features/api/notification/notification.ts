@@ -13,3 +13,31 @@ export const listNotifications = async () => {
     throw error;
   }
 };
+
+export const deleteNotifications = async(id) =>{
+
+  try{
+    const response = await api.delete(`${URL}/delete-notification`, { data:{
+      notificationId: id
+    }});
+    return response;
+  }
+  catch (error) {
+    console.log('error',error?.message);
+    throw error;
+  }
+}
+
+export const addNotification = async({subject, message})=>{
+  try{
+    const response = await api.post(`${URL}/create-notification`, {
+      subject,
+      message
+    });
+    return response;
+  }
+  catch (error) {
+    console.log('error',error?.message);
+    throw error;
+  }
+}

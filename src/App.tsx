@@ -17,7 +17,6 @@ import SystemConfiguration from "./pages/System-Configuration/systemConfiguratio
 import Transactions from "./pages/Transactions/transactions";
 import Users from "./pages/Users/users";
 import Wallet from "./pages/Wallet/wallet";
-import { useState } from "react";
 import DashboadGiftCard from "./pages/Dashboard/dashboadGiftCard";
 import DashboardDigitalCurrency from "./pages/Dashboard/dashboardDigitalCurrency";
 import DashboardFiatCurrency from "./pages/Dashboard/dashboardFiatCurrency";
@@ -25,6 +24,9 @@ import DashboardCryptoCurrency from "./pages/Dashboard/dashboardCryptoCurrency";
 import Deposite from "./pages/Deposite/deposite";
 import CryptoCurrencyTransfer from "./pages/Crypto-Currency-Transfer/cryptoCurrencyTransfer";
 import Login from "./pages/Auth/login";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from 'react';
 
 
 // type ContextType = string |  [] |boolean; 
@@ -34,9 +36,27 @@ import Login from "./pages/Auth/login";
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const handleSidebar = () => setSideBarOpen(!sideBarOpen);
-
+  const [isOnline, setIsOnline] = useState(true);
  
+ 
+  useEffect(() => {
+    const handleNetworkChange = () => {
+      setIsOnline(navigator.onLine);
+    };
 
+    // Add event listeners for online/offline events
+    window.addEventListener('online', handleNetworkChange);
+    window.addEventListener('offline', handleNetworkChange);
+
+    // Initial check of the network status
+    // setIsOnline(navigator.onLine);
+
+    // Clean up the event listeners when the component unmounts
+    return () => {
+      window.removeEventListener('online', handleNetworkChange);
+      window.removeEventListener('offline', handleNetworkChange);
+    };
+  }, []);
 
 
   const router = createBrowserRouter(
@@ -75,13 +95,46 @@ function App() {
              <Route path="/crypto-currrency" element={ <DashboardCryptoCurrency />} />
              <Route path="/gift-card" element={ < DashboadGiftCard />} />
         </Route>
+        
       </Route>
      
     )
   );
   return (
     <>
+
+<div className="App">
+    
+
+      {!isOnline && (
+        (
+          // toast('You are offline!', {
+          //   position: "bottom-center",
+          //   autoClose: false,
+          //   hideProgressBar: true,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "light",
+          //   })
+          <div> <p className="text-[19px] flex justify-center bg-[#fa7575] text-[white]">You are currently offline</p></div>
+        )
+      )}
+    </div>
       <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 }

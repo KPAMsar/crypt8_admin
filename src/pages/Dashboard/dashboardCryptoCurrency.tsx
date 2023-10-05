@@ -7,7 +7,7 @@ import { URL } from '../../lib/params';
 // import { useGetCryptoCurrencyQuery } from '../../features/api/crypto-currency/cryptoCurrencyApi';
 import { useState, useEffect } from 'react';
 // import { getCryptoCurrency } from '../../features/api/crypto-currency/cryptoCurrencyApi';
-import { addCryptoCurrency, getCryptoCurrency,updateCryptoCurrency,deleteCryptoCurrency } from '../../features/api/crypto-currency/cryptoCurrencyApi';
+import { addCryptoCurrency, getCryptoCurrency, updateCryptoCurrency, deleteCryptoCurrency } from '../../features/api/crypto-currency/cryptoCurrencyApi';
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { LineWave, RotatingLines } from "react-loader-spinner";
@@ -41,7 +41,7 @@ const DashboardCryptoCurrency = () => {
     const [updateId, setUpdateId] = useState('');
     const [show, setShow] = useState(false);
     const [deleteing, setDeleting] = useState(false);
-    const [deleteSuccess, setDeleteSuccess]=useState(false);
+    const [deleteSuccess, setDeleteSuccess] = useState(false);
 
 
     // const res = GetCryptoCurrency()
@@ -53,7 +53,7 @@ const DashboardCryptoCurrency = () => {
             const data = await getCryptoCurrency();
             setRotate(false);
             setCryptoCurrency(data.cryptos)
-           
+
             // console.log('data', data);
 
         }
@@ -66,92 +66,92 @@ const DashboardCryptoCurrency = () => {
         const files = e.target.files[0];
         setImageName(files.name)
         setCurrencyImage(files);
-        
+
     }
 
     const handleAddCryptoCurrency = async (e) => {
         e.preventDefault();
-        
+
         if (!currencyName) {
-          toast.error('Currency Name is required');
-          console.log('name',currencyName)
-          return;
+            toast.error('Currency Name is required');
+            console.log('name', currencyName)
+            return;
         }
-    
+
         if (!currencyImage) {
-          toast.error('Currency Image is needed');
-          return;
+            toast.error('Currency Image is needed');
+            return;
         }
         setLoading(true);
-    // console.log('currencyy',currencyImage)
+        // console.log('currencyy',currencyImage)
         const formData = new FormData();
         formData.append('name', currencyName);
         formData.append('image', currencyImage);
-        console.log('form data',formData)
-    
+        console.log('form data', formData)
+
         try {
-          const response = await addCryptoCurrency(formData);
-          console.log('Response from addCryptoCurrency:', response);
-    
-          toast.success('Currency added successful');
-          closeModal();
-          setCurrencyName('');
-          setCurrencyImage(null);
-          setLoading(false);
-          setIsModalOpen(false);
-          
+            const response = await addCryptoCurrency(formData);
+            console.log('Response from addCryptoCurrency:', response);
+
+            toast.success('Currency added successful');
+            closeModal();
+            setCurrencyName('');
+            setCurrencyImage(null);
+            setLoading(false);
+            setIsModalOpen(false);
+
         } catch (error) {
             setLoading(false);
-          console.error('Error adding crypto currency:', error);
+            console.error('Error adding crypto currency:', error);
         }
-        finally{
+        finally {
             setShow(false);
         }
-      };
+    };
 
-      const handleUpdate = async (e) =>{
+    const handleUpdate = async (e) => {
         e.preventDefault();
         setLoading(true);
         if (!currencyName) {
             toast.error('Currency Name is required');
             return;
         }
-    
+
         try {
-            const response = await updateCryptoCurrency(currencyName,updateId);
+            const response = await updateCryptoCurrency(currencyName, updateId);
             console.log('Response from  update CryptoCurrency:', response);
-        
+
             toast.success('Currency updated successful');
             closeModal();
             setCurrencyName('');
             setCurrencyImage(null);
             setLoading(false);
             setIsModalOpen(false);
-            
-            } catch (error) {
-                setLoading(false);
-            console.error('Error adding crypto currency:', error);
-            }
-            finally{
-                setUpdate(false)
-            }
-        }
 
-      const handleDelete = async (e) => {
-      
+        } catch (error) {
+            setLoading(false);
+            console.error('Error adding crypto currency:', error);
+        }
+        finally {
+            setUpdate(false)
+        }
+    }
+
+    const handleDelete = async (e) => {
+
         setDeleting(true)
         e.preventDefault();
-        
+
         try {
-           
-            const data = await deleteCryptoCurrency(selectedId); 
-              console.log(data);
+
+            const data = await deleteCryptoCurrency(selectedId);
+            console.log(data);
         } catch (error) {
             console.error(error);
             return error;
 
         }
-        finally{
+        finally {
             setDeleting(false);
         }
     }
@@ -161,8 +161,8 @@ const DashboardCryptoCurrency = () => {
         fetchAllCrypto()
 
     }, [])
-   
- 
+
+
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -222,7 +222,7 @@ const DashboardCryptoCurrency = () => {
                     <div className='overflow-x-auto'>
                         <table className="table w-full pb-[60px] bg-[#0E0E0E] lg:bg-[]"  >
                             <thead className="text-white ">
-                                <th>S/N</th>
+                                <th className=''>S/N</th>
                                 <th>Logo</th>
                                 <th>Name</th>
                                 <th>Status</th>
@@ -230,7 +230,7 @@ const DashboardCryptoCurrency = () => {
                                 <th>Delete</th>
                             </thead>
                             <tbody className='bg-[#0E0E0E]  '>
-        
+
 
                                 {cryptoCurrency.map((items, index) => (
                                     <tr key={index + 1} style={{ border: 'none', justifyItems: ' center' }}>
@@ -239,23 +239,23 @@ const DashboardCryptoCurrency = () => {
                                         <td style={{ border: 'none' }} className='p-[1rem] text-[#787878]'>{items?.name}</td>
                                         <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>{items?.status === '1' ? 'Successful' : 'Pending'} </td>
                                         <td style={{ border: 'none' }} className='p-[1rem] text-center text-[#787878]'>
-                                            <button className="btn mx-auto block bg-[#9CFA4A2B] text-[#9CFA4A]" onClick={ ()=> {setUpdate(true); setUpdateId(items?.id)} }>Edit</button>
+                                            <button className="btn mx-auto block bg-[#9CFA4A2B] text-[#9CFA4A]" onClick={() => { setUpdate(true); setUpdateId(items?.id) }}>Edit</button>
                                         </td>
                                         {/* <td style={{ border: 'none' }} className='p-[1rem]  text-[#787878]'>
                                             <button className="btn  mx-auto block bg-[#DA0808] text-[#f0a9a9]">Delete</button>
                                         </td> */}
-                                         <label htmlFor="modal-1" className="btn mx-auto 
-   bg-[#DA0808] text-[#f0a9a9]" onClick={()=>setSelectedId(items.id)}>
-                                                Delete
-                                            </label>
+                                        <label htmlFor="modal-1" className="btn mx-auto 
+   bg-[#DA0808] text-[#f0a9a9]" onClick={() => setSelectedId(items.id)}>
+                                            Delete
+                                        </label>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                          {rotate &&  <div className='flex justify-center items-center w-full bg-[#0E0E0E] '>
-                                <LineWave color="red" middleLineColor="green" lastLineColor="green" />
-                                      </div>
-                            }
+                        {rotate && <div className='flex justify-center items-center w-full bg-[#0E0E0E] '>
+                            <LineWave color="red" middleLineColor="green" lastLineColor="green" />
+                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -296,7 +296,7 @@ const DashboardCryptoCurrency = () => {
                                         {" "}
                                         Currency Name
                                     </small>
-                                    <input id="currencyName" name="currencyName" value={currencyName} className=" bg-[#0E0E0E]  text-[white]  lg:h-[60px] h-[50px] mb-[30px]  justify-between flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%] h-[120px]" onChange={ (e)=> {setCurrencyName(e.target.value) }} />
+                                    <input id="currencyName" name="currencyName" value={currencyName} className=" bg-[#0E0E0E]  text-[white]  lg:h-[60px] h-[50px] mb-[30px]  justify-between flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%] h-[120px]" onChange={(e) => { setCurrencyName(e.target.value) }} />
                                 </div>
 
 
@@ -308,8 +308,8 @@ const DashboardCryptoCurrency = () => {
                                     </small>
 
                                     <div className='  justify-center'>
-                                        <label htmlFor="app" ><input type="file" accept="images/*" onChange={handleFileChange} id="app" hidden  />
-                                            <p className={`${imageName?' w-[auto]' : 'w-[110px]'} text-white text-[16px] border  border-[#9CFA4A] p-[7px] rounded-lg`}>{ !imageName ? 'Choose File':imageName}</p>
+                                        <label htmlFor="app" ><input type="file" accept="images/*" onChange={handleFileChange} id="app" hidden />
+                                            <p className={`${imageName ? ' w-[auto]' : 'w-[110px]'} text-white text-[16px] border  border-[#9CFA4A] p-[7px] rounded-lg`}>{!imageName ? 'Choose File' : imageName}</p>
                                         </label>
 
 
@@ -327,8 +327,8 @@ const DashboardCryptoCurrency = () => {
                                     onClick={initModal}
                                 >
                                     {!loading && 'Save'}
-                                    {loading &&  <div className='flex justify-center items-center w-full '>
-                                    Save <LineWave color="red" height="60" width="60" middleLineColor="green" lastLineColor="green" />
+                                    {loading && <div className='flex justify-center items-center w-full '>
+                                        Save <LineWave color="red" height="60" width="60" middleLineColor="green" lastLineColor="green" />
                                     </div>}
                                 </button>
                             </form>
@@ -337,8 +337,8 @@ const DashboardCryptoCurrency = () => {
                 </div>
             </div>
 
-{/* //UPDATE FIAT CURRENCY */}
-<div
+            {/* //UPDATE FIAT CURRENCY */}
+            <div
                 className={`h-[100dvh]  items-center w-[95%]   md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  lg:absolute lg:right-[0px] flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg   z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4    lg:right-[0%] right-[2.5%] lg:right-7 transform ${update ? "translate-y-0" : "-translate-y-[-200%] "
                     } transition-transform duration-300 ease-in-out pb-[30px]`}
             >
@@ -363,7 +363,7 @@ const DashboardCryptoCurrency = () => {
                                         {" "}
                                         Currency Name
                                     </small>
-                                    <input id="currencyName" name="currencyName" value={currencyName} className=" bg-[#0E0E0E]  text-[white]  lg:h-[60px] h-[50px] mb-[30px]  justify-between flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%] h-[120px]" onChange={ (e)=> {setCurrencyName(e.target.value) }} />
+                                    <input id="currencyName" name="currencyName" value={currencyName} className=" bg-[#0E0E0E]  text-[white]  lg:h-[60px] h-[50px] mb-[30px]  justify-between flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%] h-[120px]" onChange={(e) => { setCurrencyName(e.target.value) }} />
                                 </div>
 
 
@@ -376,8 +376,8 @@ const DashboardCryptoCurrency = () => {
                                     onClick={initModal}
                                 >
                                     {!loading && 'Update'}
-                                    {loading &&  <div className='flex justify-center items-center w-full '>
-                                    Update <LineWave color="red" height="60" width="60" middleLineColor="green" lastLineColor="green" />
+                                    {loading && <div className='flex justify-center items-center w-full '>
+                                        Update <LineWave color="red" height="60" width="60" middleLineColor="green" lastLineColor="green" />
                                     </div>}
                                 </button>
                             </form>
@@ -388,8 +388,8 @@ const DashboardCryptoCurrency = () => {
 
 
 
-              {/* DELETE MODAL */}
-              <div>
+            {/* DELETE MODAL */}
+            <div>
                 <input className="modal-state" id="modal-1" type="checkbox" />
                 <div className="modal">
                     <label className="modal-overlay" htmlFor="modal-1"></label>
@@ -411,17 +411,17 @@ const DashboardCryptoCurrency = () => {
                 </div>
             </div>
             <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
 
         </>
     );

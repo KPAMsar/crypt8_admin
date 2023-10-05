@@ -1,9 +1,12 @@
 export type NotificationSingleData = {
     id: string;
     created_at: string;
-    status: string;
-    logo: string;
+   
     name: string;
+    notification:string,
+    subject:string,
+
+
 }
 
 export type NoficationRes = {
