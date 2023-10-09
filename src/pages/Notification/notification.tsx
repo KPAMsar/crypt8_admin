@@ -26,13 +26,9 @@ const Notification = () => {
     const [showUpdate, setShowUpdate] = useState(false);
     const [updateInfo, setUpdateInfo] = useState();
 
-
-
     const initModal = () => {
         setIsModalOpen(true);
     };
-
-
 
     const fetchAllNotifications = async () => {
         try {
@@ -116,7 +112,7 @@ const Notification = () => {
 
     const fetchNotificationDetails = async (id) => {
         const data = notification.filter(item => item?.id === id);
-        console.log('data of the update',data);
+        console.log('data of the update', data);
         setUpdateInfo(data);
         //    return data;
     }
@@ -124,7 +120,7 @@ const Notification = () => {
 
     useEffect(() => {
         fetchAllNotifications();
-        
+
     }, [])
 
     useEffect(() => {
