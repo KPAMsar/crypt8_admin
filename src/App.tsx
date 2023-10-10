@@ -24,20 +24,17 @@ import DashboardCryptoCurrency from "./pages/Dashboard/dashboardCryptoCurrency";
 import Deposite from "./pages/Deposite/deposite";
 import CryptoCurrencyTransfer from "./pages/Crypto-Currency-Transfer/cryptoCurrencyTransfer";
 import Login from "./pages/Auth/login";
-import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import React, { useEffect, useState } from 'react';
+import {  ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import  { useEffect, useState } from "react";
 
-
-// type ContextType = string |  [] |boolean; 
+// type ContextType = string |  [] |boolean;
 // const Context = createContext<ContextType | undefined>(undefined);
-
 
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const handleSidebar = () => setSideBarOpen(!sideBarOpen);
   const [isOnline, setIsOnline] = useState(true);
-
 
   useEffect(() => {
     const handleNetworkChange = () => {
@@ -45,32 +42,39 @@ function App() {
     };
 
     // Add event listeners for online/offline events
-    window.addEventListener('online', handleNetworkChange);
-    window.addEventListener('offline', handleNetworkChange);
+    window.addEventListener("online", handleNetworkChange);
+    window.addEventListener("offline", handleNetworkChange);
 
-    // Initial check of the network status
-    // setIsOnline(navigator.onLine);
-
-    // Clean up the event listeners when the component unmounts
     return () => {
-      window.removeEventListener('online', handleNetworkChange);
-      window.removeEventListener('offline', handleNetworkChange);
+      window.removeEventListener("online", handleNetworkChange);
+      window.removeEventListener("offline", handleNetworkChange);
     };
   }, []);
 
-
   const router = createBrowserRouter(
     createRoutesFromElements(
-
       <Route>
-
         <Route path="login" element={<Login />} />
 
-        <Route path="/" element={<DashboardLayout sideBarOpen={sideBarOpen} handleSidebar={handleSidebar} />}>
-          <Route path="/" element={<Dashboard handleSidebar={handleSidebar} />} />
+        <Route
+          path="/"
+          element={
+            <DashboardLayout
+              sideBarOpen={sideBarOpen}
+              handleSidebar={handleSidebar}
+            />
+          }
+        >
+          <Route
+            path="/"
+            element={<Dashboard handleSidebar={handleSidebar} />}
+          />
 
           <Route path="btc-transfer" element={<BtcTransfer />} />
-          <Route path="crypto-currency-transfer" element={<CryptoCurrencyTransfer />} />
+          <Route
+            path="crypto-currency-transfer"
+            element={<CryptoCurrencyTransfer />}
+          />
           <Route path="deposite" element={<Deposite />} />
           <Route path="notifications" element={<Notification />} />
           <Route path="profile" element={<Profile />} />
@@ -86,40 +90,30 @@ function App() {
           <Route path="wallet" element={<Wallet />} />
           <Route path="gift-card" element={<DashboadGiftCard />} />
 
-
-
-
-
-          <Route path="/digital-currency" element={<DashboardDigitalCurrency />} />
+          <Route
+            path="/digital-currency"
+            element={<DashboardDigitalCurrency />}
+          />
           <Route path="/fiat-currency" element={<DashboardFiatCurrency />} />
-          <Route path="/crypto-currrency" element={<DashboardCryptoCurrency />} />
-          <Route path="/gift-card" element={< DashboadGiftCard />} />
+          <Route
+            path="/crypto-currrency"
+            element={<DashboardCryptoCurrency />}
+          />
+          <Route path="/gift-card" element={<DashboadGiftCard />} />
         </Route>
-
       </Route>
-
     )
   );
   return (
     <>
-
       <div className="App">
-
-
         {!isOnline && (
-          (
-            // toast('You are offline!', {
-            //   position: "bottom-center",
-            //   autoClose: false,
-            //   hideProgressBar: true,
-            //   closeOnClick: true,
-            //   pauseOnHover: true,
-            //   draggable: true,
-            //   progress: undefined,
-            //   theme: "light",
-            //   })
-            <div> <p className="text-[19px] flex justify-center bg-[#fa7575] text-[white]">You are currently offline</p></div>
-          )
+          <div>
+            {" "}
+            <p className="text-[19px] flex justify-center bg-[#fa7575] text-[white]">
+              You are currently offline
+            </p>
+          </div>
         )}
       </div>
       <RouterProvider router={router} />

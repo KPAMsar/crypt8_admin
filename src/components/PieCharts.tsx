@@ -17,7 +17,7 @@ const PieCharts = ({ pieChartData }) => {
 
   const graphData = pieChartData?.map((item) => ({
     name: item.user_id,
-    uv: Number(item.amount)
+    value: Number(item.amount)
   }))
   return (
     <>

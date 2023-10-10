@@ -3,8 +3,8 @@ import RoundPhotoIcon from '../assets/Icons/roundPhotoIcon.png';
 
 
 const RecentDepositeTable = ({data}) => {
-console.log('this is data from ',data
-)
+  const depositeData = data.slice(0,5);
+  
 
   
   return (
@@ -21,7 +21,7 @@ console.log('this is data from ',data
             </tr>
           </thead>
           <tbody className='bg-[#0E0E0E]  pb-[10px]'>
-            {data.map((item,id) =>(
+            {depositeData?.map((item,id) =>(
               <tr  key={id} style={{border:'none'}}>
               <th style={{border:'none'}} className='p-[1rem]'><img src={RoundPhotoIcon}  alt="" /></th>
               <td style={{border:'none'}} className='p-[1rem] text-[#787878]'>{item?.firstname}{item?.lastname}</td>

@@ -103,3 +103,13 @@ font-weight: 600;
       transform: translateX(100%);
   }
 }
+
+table th{
+  text-align: center;
+}
+table td{
+text-align: center;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>thead>tr>th{
+  text-align: center;
+}
