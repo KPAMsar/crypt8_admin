@@ -37,8 +37,8 @@ function App() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const handleSidebar = () => setSideBarOpen(!sideBarOpen);
   const [isOnline, setIsOnline] = useState(true);
- 
- 
+
+
   useEffect(() => {
     const handleNetworkChange = () => {
       setIsOnline(navigator.onLine);
@@ -61,16 +61,16 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-    
+
       <Route>
-     
-         <Route path="login" element={<Login/>} />
+
+        <Route path="login" element={<Login />} />
 
         <Route path="/" element={<DashboardLayout sideBarOpen={sideBarOpen} handleSidebar={handleSidebar} />}>
-          <Route path="/" element={ <Dashboard handleSidebar={handleSidebar} />} />
-       
+          <Route path="/" element={<Dashboard handleSidebar={handleSidebar} />} />
+
           <Route path="btc-transfer" element={<BtcTransfer />} />
-          <Route path="crypto-currency-transfer" element={<CryptoCurrencyTransfer  />} />
+          <Route path="crypto-currency-transfer" element={<CryptoCurrencyTransfer />} />
           <Route path="deposite" element={<Deposite />} />
           <Route path="notifications" element={<Notification />} />
           <Route path="profile" element={<Profile />} />
@@ -85,43 +85,43 @@ function App() {
           <Route path="users" element={<Users />} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="gift-card" element={<DashboadGiftCard />} />
-         
+
 
 
 
 
           <Route path="/digital-currency" element={<DashboardDigitalCurrency />} />
-             <Route path="/fiat-currency" element={ <DashboardFiatCurrency />} />
-             <Route path="/crypto-currrency" element={ <DashboardCryptoCurrency />} />
-             <Route path="/gift-card" element={ < DashboadGiftCard />} />
+          <Route path="/fiat-currency" element={<DashboardFiatCurrency />} />
+          <Route path="/crypto-currrency" element={<DashboardCryptoCurrency />} />
+          <Route path="/gift-card" element={< DashboadGiftCard />} />
         </Route>
-        
+
       </Route>
-     
+
     )
   );
   return (
     <>
 
-<div className="App">
-    
+      <div className="App">
 
-      {!isOnline && (
-        (
-          // toast('You are offline!', {
-          //   position: "bottom-center",
-          //   autoClose: false,
-          //   hideProgressBar: true,
-          //   closeOnClick: true,
-          //   pauseOnHover: true,
-          //   draggable: true,
-          //   progress: undefined,
-          //   theme: "light",
-          //   })
-          <div> <p className="text-[19px] flex justify-center bg-[#fa7575] text-[white]">You are currently offline</p></div>
-        )
-      )}
-    </div>
+
+        {!isOnline && (
+          (
+            // toast('You are offline!', {
+            //   position: "bottom-center",
+            //   autoClose: false,
+            //   hideProgressBar: true,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "light",
+            //   })
+            <div> <p className="text-[19px] flex justify-center bg-[#fa7575] text-[white]">You are currently offline</p></div>
+          )
+        )}
+      </div>
       <RouterProvider router={router} />
       <ToastContainer
         position="top-right"

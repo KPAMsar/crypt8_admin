@@ -13,31 +13,36 @@ const COLORS = ["#B71E41", "#B71E41", "#B71E41", "#FF8042"];
 
 
 
-const PieCharts = ()=>{
-    return(
-        <>
+const PieCharts = ({ pieChartData }) => {
 
-<div className="w-full h-full">
-              <ResponsiveContainer width="99%" height={300} className="">
-                <PieChart>
-                  <Pie
-                    data={data}
-                    innerRadius={"70%"}
-                    outerRadius={"100%"}
-                    paddingAngle={0}
-                    dataKey="value"
-                  >
-                    {data.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-        </>
-    );
+  const graphData = pieChartData?.map((item) => ({
+    name: item.user_id,
+    uv: Number(item.amount)
+  }))
+  return (
+    <>
+
+      <div className="w-full h-full">
+        <ResponsiveContainer width="99%" height={300} className="">
+          <PieChart>
+            <Pie
+              data={graphData}
+              innerRadius={"70%"}
+              outerRadius={"100%"}
+              paddingAngle={0}
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    </>
+  );
 }
 export default PieCharts;

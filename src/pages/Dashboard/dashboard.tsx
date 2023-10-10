@@ -4,10 +4,12 @@ import CryptoColordCard from "../../components/CryptoColoredCard";
 import CryptoCard from "../../components/CryptoCard";
 import DashboardBarChart from "../../components/BarChart";
 import RecentDepositeTable from "../../components/RecentDepositeTable";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LineGraph from "../../components/LineGraph";
 import PieCharts from "../../components/PieCharts";
+import { getUserDashboard } from "../../features/api/dashboard/dashboardApi";
+import { depositeRes } from "../../features/api/dashboard/dashboardModel";
 
 
 const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
@@ -15,7 +17,14 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
   const navigate = useNavigate();
 
   const [graphTab, setGraph] = useState<number>(0)
+  const [transactions, setTransactions] = useState<transactionRes[]>([]);
+  const [deposite, setDeposite] = useState<depositeRes[]>([]);
+  const [dashboardInfo, setDashboardInfo] = useState();
+  const [loadData, setLoadData] = useState(true);
 
+  // const [transactions, setTransactions] = useState();
+
+  console.log('deposite',deposite)
   const handleGiftCardClick = ()=>{
     navigate('/gift-card')
 
@@ -34,7 +43,26 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
   }
 
 
+  const fetchDashboardDetials = async()=>{
+    try{
+      setLoadData(true);
+      const data = await getUserDashboard();
+      setTransactions(data?.transactions);
+      setDeposite(data?.deposits_tx);
+      setDashboardInfo(data);
+      console.log('data',data);
+    }
+    catch (error) {
+      console.log('kkkk', error)
+    }
+    finally{
+      setLoadData(false);
+    }
+  }
 
+  useEffect(()=>{
+    fetchDashboardDetials();
+  },[])
 
   return (
     <>
@@ -52,11 +80,11 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
 
               </div>
               
-        <div className="d-flex border-[#9CFA4A] border mb-3 mr-3  rounded-lg border-solid p-[auto] bg-[#0E0E0E] w-[161px] h-[36px] items-center justify-center ">
+       {loadData ?  <div className="line line2 loading-animation"></div> : <div className="d-flex border-[#9CFA4A] border mb-3 mr-3  rounded-lg border-solid p-[auto] bg-[#0E0E0E] w-[161px] h-[36px] items-center justify-center ">
           <p className="text-[#9CFA4A]  items-center justify-center text-[14px] flex">
-            1 BTC = $28485.77 USD
+            1 BTC = ${dashboardInfo?.btc_price}
           </p>
-        </div>
+        </div>}
             </div>
          
           <div className="lg:flex lg:flex-row lg:mt-8 lg:gap-[47px] flex flex-col   ">
@@ -76,29 +104,30 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
                   <small className="text-[16px] text-[#666]">
                   Total Users
                   </small>
-                  <p className="text-[#9CFA4A] text-[35px] font-[600]">329</p>
+                  <p className="text-[#9CFA4A] text-[35px] font-[600]">{loadData ?  <div className="line line2 loading-animation"></div> : dashboardInfo?.users}</p>
                 </div>
+
 
                 <div className="w-[2px] border-l-2 bg-green"></div>
                 <div className="flex-col  min-w-[200px] lg:min-w-[auto]  py-[29px] px-[14px]  ">
                   <small className="text-[16px] text-[#666]">
                     Total Crypto Deposite
                   </small>
-                  <p className="text-[#9CFA4A] text-[35px] font-[600]">329</p>
+                  <p className="text-[#9CFA4A] text-[35px] font-[600]">{loadData ?  <div className="line line2 loading-animation"></div> : deposite?.length  }</p>
                 </div>
                 <div className="w-[2px] border-l-2 bg-slate-500"></div>
                 <div className="flex-col  min-w-[200px] lg:min-w-[auto] py-[29px] px-[14px] ">
                   <small className="text-[16px] text-[#666]">
                     Total Transactions
                   </small>
-                  <p className="text-[#9CFA4A] text-[35px] font-[600]">329</p>
+                  <p className="text-[#9CFA4A] text-[35px] font-[600]">{loadData ?  <div className="line line2 loading-animation"></div> : transactions?.length}</p>
                 </div>
                 <div className="w-[2px] border-l-2 bg-slate-500"></div>
                 <div className="flex-col   min-w-[200px] lg:min-w-[auto] lg: py-[29px] px-[14px] ">
                   <small className="text-[16px] text-[#666]">
                     Total Rate Class
                   </small>
-                  <p className="text-[#9CFA4A] text-[35px] font-[600]">329</p>
+                  <p className="text-[#9CFA4A] text-[35px] font-[600]">{ loadData ?  <div className="line line2 loading-animation"></div> : dashboardInfo?.rates}</p>
                 </div>
               </div>
               <div></div>
@@ -123,15 +152,11 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
                   </p>
                 </div>
               </div>
-              <div className="bg-[#0E0E0] w-[867px] h-[350px]   ">
-                
-                { graphTab === 0 && <DashboardBarChart />}
-                {/* { graphTab === 1 && <LineChart />} */}
-                { graphTab === 1 && <LineGraph />}
-                { graphTab === 2 && <PieCharts />}
-                
-
-              </div>
+             {loadData ?  <div className="graph-box loading-animation"></div> : <div className="bg-[#0E0E0] w-[867px] h-[350px]   ">
+                { graphTab === 0 && <DashboardBarChart data={transactions} />}
+                { graphTab === 1 && <LineGraph  lineGraphData={transactions} />}
+                { graphTab === 2 && <PieCharts pieChartData={transactions} />}
+              </div>}
             </div>
 
             <div className="lg:flex  lg:space-y-[19px] lg:flex-col space-y-[20px] ">
@@ -173,7 +198,7 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
         <h2 className="text-white pl-[27px] lg:pl-[] ">Recent Deposite</h2>
         <h2 className="text-white  pr-[27px] lg:p-[]">View More</h2>
         </div>
-          <RecentDepositeTable />
+          <RecentDepositeTable  data={deposite} />
         </div>
       </div>
     </>
