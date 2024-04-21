@@ -15,7 +15,6 @@ import { ProcesingLoader } from "../../components/processingLoader";
 import { PiEyeBold, PiEyeClosedBold } from "react-icons/pi";
 
 const Profile = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [profileData, setProfileData] = useState<ProfileSingleRes[]>([]);
   const [rotate, setRotate] = useState(false);
   const [processing, setProcessing] = useState(false);
@@ -32,26 +31,16 @@ const Profile = () => {
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = profileData?.slice(firstPostIndex, lastPostIndex);
-  const initModal = () => {
-    setIsModalOpen(true);
-  };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-
-  const handleShowPassword = ()=>{
-    const pwd = document.getElementById('password');
-    const typ = pwd.getAttribute('type');
-    if(typ === 'password'){
-      pwd.setAttribute('type','text')
+  const handleShowPassword = () => {
+    const pwd = document.getElementById("password");
+    const typ = pwd.getAttribute("type");
+    if (typ === "password") {
+      pwd.setAttribute("type", "text");
+    } else {
+      pwd.setAttribute("type", "password");
     }
-    else{
-      pwd.setAttribute('type','password')
-    }
-
-  }
+  };
 
   const fetchAllProfile = async () => {
     try {
@@ -66,8 +55,7 @@ const Profile = () => {
       }
     } catch (error) {
       toast.error(error?.message);
-    }
-    finally {
+    } finally {
       setRotate(false);
     }
   };
@@ -81,17 +69,14 @@ const Profile = () => {
     setForm(temp);
   };
 
-
   const handleAddProfile = async () => {
-
     const { firstname, lastname, email, phone, password } = form;
     if (!firstname || !lastname || !email || !phone || !password) {
-      toast.error('Input all detais correctly');
+      toast.error("Input all detais correctly");
       return;
     }
 
     try {
-
       setLoading(true);
 
       const data = await addProfile({
@@ -99,27 +84,19 @@ const Profile = () => {
         lastname,
         email,
         phone,
-
       });
-      console.log('saced response', data);
-
-    }
-    catch (error) {
+      console.log("saced response", data);
+    } catch (error) {
       console.log(error);
-      toast.error(error.message)
-    }
-    finally {
+      toast.error(error.message);
+    } finally {
       setLoading(false);
-      setIsModalOpen(false);
       setShow(false);
     }
-
-
-  }
+  };
 
   useEffect(() => {
     fetchAllProfile();
-
   }, []);
 
   return (
@@ -133,10 +110,12 @@ const Profile = () => {
 
         <div className="flex justify-between  pb-7">
           <div className="border border-none bg-[#0E0E0E] w-[670px] rounded-lg h-[60px] items-center  md:flex lg:flex justify-between hidden  ">
-            <p className="text-[#9C9696] justify-center items-center pl-3">
-              Search Bookings
-            </p>
-            <div className="items-center">
+            <input
+              className="text-[#9C9696] justify-center items-center pl-3 w-[100%] bg-[#0E0E0E]"
+              placeholder="Search Bookings"
+            />
+
+            <div className="items-center pl-[5px]">
               <img src={SearchIcon} alt="" className="items-center pr-3" />
             </div>
           </div>
@@ -238,15 +217,17 @@ const Profile = () => {
 
       {/* MODAL */}
       <div
-        className={` ${show
-          ? "fixed top-0 right-0 z-20 h-[100dvh] w-[100dvw] bg-[rgba(210,210,210,0.5)]"
-          : " "
-          } `}
+        className={` ${
+          show
+            ? "fixed top-0 right-0 z-20 h-[100dvh] w-[100dvw] bg-[rgba(210,210,210,0.5)]"
+            : " "
+        } `}
       ></div>
 
       <div
-        className={`h-[100dvh]  items-center w-[95%]   md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  lg:absolute lg:right-[0px] flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg   z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4    lg:right-[0%] right-[2.5%] lg:right-7 transform ${show ? "translate-y-0" : "-translate-y-[-200%] "
-          } transition-transform duration-300 ease-in-out pb-[30px]`}
+        className={`h-[100dvh]  items-center w-[95%]   md:w-[500px] rounded-lg lg:h-[854px] lg:w-[749px]  lg:absolute lg:right-[0px] flex justify-center lg:justify-items-end bg-[#010101]  shadow-lg   z-30 lg:backdrop-blur-md backdrop-blur-md fixed top-2 lg:top-4    lg:right-[0%] right-[2.5%] lg:right-7 transform ${
+          show ? "translate-y-0" : "-translate-y-[-200%] "
+        } transition-transform duration-300 ease-in-out pb-[30px]`}
       >
         {/* modal content goes here */}
         <div className="p-3 w-full">
@@ -262,8 +243,6 @@ const Profile = () => {
               Add Profile
             </h2>
             <div className="flex  flex-col gap-4 ">
-
-
               <div className="bg-[#0E0E0E]">
                 <small className=" text-[#666666] text-[12px] p-4   ">
                   {" "}
@@ -294,7 +273,6 @@ const Profile = () => {
                 <small className=" text-[#666666] text-[12px] p-4   ">
                   {" "}
                   Email Address
-
                 </small>
                 <input
                   id="email"
@@ -309,7 +287,6 @@ const Profile = () => {
                 <small className=" text-[#666666] text-[12px] p-4   ">
                   {" "}
                   Phone Number
-
                 </small>
                 <input
                   id="phone"
@@ -330,20 +307,25 @@ const Profile = () => {
                     name="role"
                     type="password"
                     className=" bg-[#0E0E0E]  text-[white]  lg:h-[60px] h-[50px] mb-[30px]  justify-between flex flex-col justify-item p-4 lg:p-4 gap-3 w-[100%]"
-
                     placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
                     onChange={handleChange}
                   />
                   <div className="px-[10px] flex  items-center">
-                    <p className="text-white" onClick={() => { setShowPassword(!showPassword); handleShowPassword(); }}>
-                      {!showPassword ? <PiEyeBold /> : <PiEyeClosedBold />}</p>
+                    <p
+                      className="text-white"
+                      onClick={() => {
+                        setShowPassword(!showPassword);
+                        handleShowPassword();
+                      }}
+                    >
+                      {!showPassword ? <PiEyeBold /> : <PiEyeClosedBold />}
+                    </p>
                   </div>
                 </div>
-
               </div>
 
-
-              <button type="submit"
+              <button
+                type="submit"
                 style={{
                   background:
                     "linear-gradient(40deg, #9CFA4A2B 2%, rgba(156, 250, 74, 0.00) 65%) ",
@@ -351,10 +333,19 @@ const Profile = () => {
                 className="text-[#9CFA4A]  p-2 px-[100px] sm:w-full py-4  border border-1 border-[#9CFA4A2B]   bg-[#9CFA4A2B]  text-center "
                 onClick={handleAddProfile}
               >
-                {!loading && 'Save'}
-                {loading && <div className='flex justify-center items-center w-full '>
-                  Save <LineWave color="red" height="60" width="60" middleLineColor="green" lastLineColor="green" />
-                </div>}
+                {!loading && "Save"}
+                {loading && (
+                  <div className="flex justify-center items-center w-full ">
+                    Save{" "}
+                    <LineWave
+                      color="red"
+                      height="60"
+                      width="60"
+                      middleLineColor="green"
+                      lastLineColor="green"
+                    />
+                  </div>
+                )}
               </button>
             </div>
           </div>

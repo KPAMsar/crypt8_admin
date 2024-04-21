@@ -21,7 +21,7 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
 
   // const [transactions, setTransactions] = useState();
 
-  console.log("deposite", deposite);
+
   const handleGiftCardClick = () => {
     navigate("/gift-card");
   };
@@ -231,13 +231,15 @@ const Dashboard = ({ handleSidebar }: { handleSidebar: () => void }) => {
           </div>
         </div>
 
-        <div className=" lg:pl-[48px] lg:w-[1250px] lg:h-[500px] bg-[#0E0E0E]  mt-[40px] lg:mt-[20px] rounded-lg lg:rounded-sm  w-full pr-[10px]">
+        {loadData ? (
+                <div className="graph-box loading-animation"></div>
+              ) : <div className=" lg:pl-[48px] lg:w-[1250px] lg:h-[500px] bg-[#0E0E0E]  mt-[40px] lg:mt-[20px] rounded-lg lg:rounded-sm  w-full pr-[10px]">
           <div className="flex justify-between pt-[20px]">
             <h2 className="text-white pl-[27px] lg:pl-[] ">Recent Deposite</h2>
             <h2 className="text-white  pr-[27px] lg:p-[]">View More</h2>
           </div>
-          <RecentDepositeTable data={deposite} />
-        </div>
+          <RecentDepositeTable data={deposite}  />
+        </div>}
       </div>
     </>
   );

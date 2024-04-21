@@ -1,0 +1,10 @@
+   <div className="border border-none bg-[#0E0E0E] w-[670px] rounded-lg h-[60px] items-center  md:flex lg:flex justify-between hidden  ">
+            <input
+              className="text-[#9C9696] justify-center items-center pl-3 w-[100%] bg-[#0E0E0E]"
+              placeholder="Search Bookings"
+            />
+
+            <div className="items-center pl-[5px]">
+              <img src={SearchIcon} alt="" className="items-center pr-3" />
+            </div>
+          </div>

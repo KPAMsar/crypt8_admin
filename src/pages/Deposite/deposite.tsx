@@ -7,7 +7,8 @@ import { AiOutlineClose } from "react-icons/ai";
 
 
 const Deposite = () => {
-
+   
+    
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const initModal = () => {
